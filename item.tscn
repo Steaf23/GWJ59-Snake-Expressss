@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwj4xfnnfcc7v"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_pdrbj"]
+[ext_resource type="Texture2D" uid="uid://bqrtjf62c20p" path="res://Assets/Art/GrowthFruit.png" id="2_2jqbh"]
+
+[sub_resource type="Animation" id="Animation_4tupp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x2kug"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1.07177, 1.18921, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rakf"]
+_data = {
+"RESET": SubResource("Animation_4tupp"),
+"idle": SubResource("Animation_x2kug")
+}
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_pdrbj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2jqbh")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_3rakf")
+}

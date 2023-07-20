@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://b76ikgus0leci"]
+
+[ext_resource type="Script" path="res://train.gd" id="1_3y54e"]
+[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://train_wagon.tscn" id="2_55dmj"]
+[ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
+[ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
+
+[sub_resource type="Animation" id="Animation_p58ls"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ceeba"]
+resource_name = "bite_end"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 0]
+}
+
+[sub_resource type="Animation" id="Animation_uxrvx"]
+resource_name = "bite_start"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sdtcy"]
+_data = {
+"RESET": SubResource("Animation_p58ls"),
+"bite_end": SubResource("Animation_ceeba"),
+"bite_start": SubResource("Animation_uxrvx")
+}
+
+[node name="Train" type="Node2D"]
+script = ExtResource("1_3y54e")
+
+[node name="MovementTimer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="Wagons" type="Node2D" parent="."]
+
+[node name="Head" parent="Wagons" instance=ExtResource("2_55dmj")]
+unique_name_in_owner = true
+z_index = 1
+can_have_passenger = false
+
+[node name="Sprite" parent="Wagons/Head" index="0"]
+texture = ExtResource("3_j8u8j")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wagons/Head"]
+libraries = {
+"": SubResource("AnimationLibrary_sdtcy")
+}
+
+[node name="Tail" parent="Wagons" instance=ExtResource("2_55dmj")]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+can_have_passenger = false
+
+[node name="Sprite" parent="Wagons/Tail" index="0"]
+texture = ExtResource("4_kcxdi")
+
+[node name="SoundTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="BoostTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="animation_finished" from="Wagons/Head/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]
+
+[editable path="Wagons/Head"]
+[editable path="Wagons/Tail"]

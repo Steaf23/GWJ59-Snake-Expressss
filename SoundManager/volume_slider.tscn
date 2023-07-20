@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ompna74v6kb"]
+
+[ext_resource type="Script" path="res://SoundManager/volume_slider.gd" id="1_ci3fq"]
+[ext_resource type="AudioStream" uid="uid://biwy7wbltj07h" path="res://Assets/Audio/Crash_Sound_1.wav" id="2_ppmuo"]
+
+[node name="VolumeSlider" type="HBoxContainer"]
+offset_right = 13.0
+offset_bottom = 23.0
+script = ExtResource("1_ci3fq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+step = 10.0
+value = 100.0
+tick_count = 10
+
+[node name="TestSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ppmuo")
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

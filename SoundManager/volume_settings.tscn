@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ux1lgkuk6mvl"]
+
+[ext_resource type="PackedScene" uid="uid://0ompna74v6kb" path="res://SoundManager/volume_slider.tscn" id="1_338k6"]
+
+[node name="VolumeSettings" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="Master" parent="." instance=ExtResource("1_338k6")]
+layout_mode = 2
+bus = &"Master"
+
+[node name="Music" parent="." instance=ExtResource("1_338k6")]
+layout_mode = 2
+bus = &"Music"
+
+[node name="SFX" parent="." instance=ExtResource("1_338k6")]
+layout_mode = 2
+bus = &"SFX"
