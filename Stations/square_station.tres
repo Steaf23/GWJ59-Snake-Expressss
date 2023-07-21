@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StationEntry" load_steps=2 format=3 uid="uid://rkk1053lsvvn"]
+
+[ext_resource type="Script" path="res://Stations/StationEntry.gd" id="1_7q80i"]
+
+[resource]
+script = ExtResource("1_7q80i")
+type = 0
+color = Color(0.14902, 0.384314, 1, 1)

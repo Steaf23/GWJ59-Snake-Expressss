@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsr3jvnqih2fr"]
+
+[ext_resource type="Script" path="res://scene_manager.gd" id="1_4u5sb"]
+[ext_resource type="Script" path="res://pause_layer.gd" id="2_6is37"]
+[ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="3_hhwlq"]
+[ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="4_oqcix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk0w"]
+bg_color = Color(0, 0, 0, 0.462745)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igdc2"]
+font_size = 24
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_4u5sb")
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseLayer" type="CanvasLayer" parent="HUDLayer"]
+process_mode = 3
+script = ExtResource("2_6is37")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/PauseLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HUDLayer/PauseLayer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nk0w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUDLayer/PauseLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUDLayer/PauseLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_igdc2")
+horizontal_alignment = 1
+
+[node name="KeyRebind" parent="HUDLayer/PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_hhwlq")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VolumeSettings" parent="HUDLayer/PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("4_oqcix")]
+layout_mode = 2
+size_flags_vertical = 10

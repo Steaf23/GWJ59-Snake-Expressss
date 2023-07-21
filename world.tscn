@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxdpcp5j12n46"]
+[gd_scene load_steps=12 format=3 uid="uid://cxdpcp5j12n46"]
 
 [ext_resource type="Script" path="res://grid.gd" id="1_1qjsb"]
 [ext_resource type="Texture2D" uid="uid://duu8qceldeudx" path="res://Assets/Art/BushesPacked.png" id="1_jxrvb"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cx84v6dyo42jw" path="res://Assets/Art/SwampWater.png" id="2_uo0rg"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="5_25gom"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="6_leje5"]
-[ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="6_sgm5m"]
-[ext_resource type="Script" path="res://pause_layer.gd" id="6_ytmvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i85nu"]
 texture = ExtResource("1_jxrvb")
@@ -194,12 +192,6 @@ sources/3 = SubResource("TileSetAtlasSource_vhb0b")
 sources/2 = SubResource("TileSetAtlasSource_imnon")
 sources/0 = SubResource("TileSetAtlasSource_i85nu")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sy2va"]
-bg_color = Color(0, 0, 0, 0.462745)
-
-[sub_resource type="LabelSettings" id="LabelSettings_o1cxv"]
-font_size = 24
-
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
@@ -226,38 +218,30 @@ position = Vector2(224, 160)
 [node name="Train" parent="Grid" instance=ExtResource("2_suilo")]
 position = Vector2(288, 64)
 
+[node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
+limit_left = 0
+limit_top = 0
+
+[node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
+position = Vector2(-256, -32)
+
+[node name="Corner2" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="1"]
+position = Vector2(384, 320)
+
+[node name="ReferenceRect" parent="Grid/Train/Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = -640.0
+offset_bottom = -368.0
+
 [node name="Items" type="Node2D" parent="Grid"]
 
 [node name="Item" parent="Grid/Items" instance=ExtResource("6_leje5")]
 position = Vector2(384, 160)
 
-[node name="PauseLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-visible = false
-script = ExtResource("6_ytmvi")
-
-[node name="MarginContainer" type="MarginContainer" parent="PauseLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="PauseLayer/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_sy2va")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseLayer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PauseLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Game Paused"
-label_settings = SubResource("LabelSettings_o1cxv")
-horizontal_alignment = 1
-
-[node name="VolumeSettings" parent="PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("6_sgm5m")]
-layout_mode = 2
-size_flags_vertical = 10
-
 [connection signal="move_timer_timeout" from="Grid/Train" to="Grid" method="_on_train_move_timer_timeout"]
+
+[editable path="Grid/Train"]
+[editable path="Grid/Train/Wagons/Head"]
+[editable path="Grid/Train/Wagons/Head/BoundCamera2D"]
+[editable path="Grid/Train/Wagons/Tail"]

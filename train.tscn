@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b76ikgus0leci"]
+[gd_scene load_steps=10 format=3 uid="uid://b76ikgus0leci"]
 
 [ext_resource type="Script" path="res://train.gd" id="1_3y54e"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://train_wagon.tscn" id="2_55dmj"]
 [ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
 [ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
+[ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_164jo"]
 
 [sub_resource type="Animation" id="Animation_p58ls"]
 length = 0.001
@@ -82,6 +83,25 @@ libraries = {
 "": SubResource("AnimationLibrary_sdtcy")
 }
 
+[node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_164jo")]
+position = Vector2(-32, -32)
+limit_left = -416
+limit_top = -192
+limit_right = 672
+limit_bottom = 448
+
+[node name="Corner1" parent="Wagons/Head/BoundCamera2D" index="0"]
+position = Vector2(-384, -160)
+
+[node name="Corner2" parent="Wagons/Head/BoundCamera2D" index="1"]
+position = Vector2(704, 480)
+
+[node name="ReferenceRect" parent="Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
+offset_left = -416.0
+offset_top = -192.0
+offset_right = -608.0
+offset_bottom = -272.0
+
 [node name="Tail" parent="Wagons" instance=ExtResource("2_55dmj")]
 unique_name_in_owner = true
 position = Vector2(0, -32)
@@ -101,4 +121,5 @@ autostart = true
 [connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]
 
 [editable path="Wagons/Head"]
+[editable path="Wagons/Head/BoundCamera2D"]
 [editable path="Wagons/Tail"]

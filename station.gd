@@ -1,6 +1,25 @@
+@tool
 class_name Station
 extends Node2D
 
+enum STATION_TYPE {
+	Square,
+	Triangle,
+	Star,
+	Circle,
+	Dusk,
+	Dawn,
+}
+
+@export var entry: StationEntry: 
+	set(value):
+		entry = value
+		if entry != null:
+			if $Icon == null:
+				await ready
+			$Icon.texture.gradient.set_color(0, entry.color)
+		
+		
 @export var starting_count: int = 2
 
 @onready var passenger_count: int = starting_count
@@ -9,6 +28,7 @@ var current_cell: Vector2i
 
 
 func _ready() -> void:
+	self.entry = entry
 	current_cell = (global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
 	$Count.text = str(passenger_count)
 	$Sprite2D.frame = 0 if passenger_count > 0 else 1

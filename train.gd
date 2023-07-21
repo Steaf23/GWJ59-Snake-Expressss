@@ -61,13 +61,13 @@ func move(precondition: Callable):
 	
 	if not precondition.call(self, target_cell):
 		SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
-		get_tree().reload_current_scene()
+		SceneSignalBus.request_change_scene("res://world.tscn")
 		return
 		
 	for wagon in wagons.get_children():
 		if wagon is TrainWagon and wagon.current_cell == target_cell:
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
-			get_tree().reload_current_scene()
+			SceneSignalBus.request_change_scene("res://world.tscn")
 			return
 		
 	current_cell = target_cell

@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="GWJ59"
-run/main_scene="res://world.tscn"
+run/main_scene="res://scene_manager.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0.0392157, 0.0784314, 0.14902, 1)
+boot_splash/image="res://Assets/Art/SnakeExpressssIllustration.png"
 config/icon="res://Assets/Art/SnakeTrain_Head1.png"
 
 [audio]
@@ -24,13 +26,13 @@ buses/default_bus_layout="res://SoundManager/bus_layout.tres"
 Global="*res://global.gd"
 SoundManager="*res://SoundManager/sound_manager.tscn"
 Sounds="*res://SoundManager/sounds.gd"
+KeyActions="*res://InputMapper/KeyActions.gd"
+SceneSignalBus="*res://scene_signal_bus.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [input]
@@ -61,4 +63,4 @@ move_down={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0, 0.0980392, 0.109804, 1)
+environment/defaults/default_clear_color=Color(0.0666667, 0.12549, 0.231373, 1)

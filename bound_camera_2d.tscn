@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckp6e67t60hyx"]
+
+[ext_resource type="Script" path="res://bound_camera_2d.gd" id="1_ehlp2"]
+
+[node name="BoundCamera2D" type="Camera2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+script = ExtResource("1_ehlp2")
+
+[node name="Corner1" type="Marker2D" parent="."]
+
+[node name="Corner2" type="Marker2D" parent="."]
+position = Vector2(1280, 720)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.556863, 0.764706, 1, 1)
+border_width = 3.0
+metadata/_edit_lock_ = true

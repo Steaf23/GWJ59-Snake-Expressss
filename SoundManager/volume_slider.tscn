@@ -24,4 +24,5 @@ tick_count = 10
 [node name="TestSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ppmuo")
 
+[connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

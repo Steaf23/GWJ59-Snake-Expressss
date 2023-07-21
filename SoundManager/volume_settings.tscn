@@ -18,6 +18,10 @@ horizontal_alignment = 1
 layout_mode = 2
 bus = &"Master"
 
+[node name="HSlider" parent="Master" index="1"]
+step = 1.0
+value = 30.0
+
 [node name="Music" parent="." instance=ExtResource("1_338k6")]
 layout_mode = 2
 bus = &"Music"
@@ -25,3 +29,5 @@ bus = &"Music"
 [node name="SFX" parent="." instance=ExtResource("1_338k6")]
 layout_mode = 2
 bus = &"SFX"
+
+[editable path="Master"]

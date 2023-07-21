@@ -1,8 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://djlj1bhvc1kp8"]
+[gd_scene load_steps=14 format=3 uid="uid://djlj1bhvc1kp8"]
 
 [ext_resource type="Texture2D" uid="uid://cnwmmdyhxr0p3" path="res://Assets/Art/Station.png" id="1_4qhth"]
 [ext_resource type="Script" path="res://station.gd" id="1_vaplg"]
+[ext_resource type="Resource" uid="uid://rkk1053lsvvn" path="res://Stations/square_station.tres" id="2_ek3jj"]
 [ext_resource type="Texture2D" uid="uid://fooj2rtj3txq" path="res://Assets/Art/Newt.png" id="3_824on"]
+
+[sub_resource type="Gradient" id="Gradient_c477j"]
+offsets = PackedFloat32Array(0.00881057)
+colors = PackedColorArray(0.14902, 0.384314, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_shfu5"]
+gradient = SubResource("Gradient_c477j")
+width = 30
+height = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_mgn88"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_o32n2"]
 length = 0.001
@@ -151,21 +165,28 @@ _data = {
 [node name="Station" type="Node2D"]
 z_index = 1
 script = ExtResource("1_vaplg")
+entry = ExtResource("2_ek3jj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 0)
 texture = ExtResource("1_4qhth")
 hframes = 2
 
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(16, -13)
+texture = SubResource("GradientTexture2D_shfu5")
+
 [node name="Count" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -4.0
-offset_top = -26.0
+offset_top = -28.0
 offset_right = 36.0
+offset_bottom = -2.0
 grow_horizontal = 2
 text = "2"
+label_settings = SubResource("LabelSettings_mgn88")
 horizontal_alignment = 1
 vertical_alignment = 2
 
