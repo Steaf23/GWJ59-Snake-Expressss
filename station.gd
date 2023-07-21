@@ -15,7 +15,7 @@ enum STATION_TYPE {
 	set(value):
 		entry = value
 		if entry != null:
-			if $Icon == null:
+			if not is_node_ready():
 				await ready
 			$Icon.texture.gradient.set_color(0, entry.color)
 		

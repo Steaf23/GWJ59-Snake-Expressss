@@ -30,10 +30,13 @@ func try_pickup_passenger():
 	if not train.can_add_passenger():
 		return
 	
-	for station in stations.get_children():
-		if train.current_cell in station.get_pickup_cells():
-			station.pickup_passenger(train.head)
-			train.add_passenger()
+	
+	for wagon in train.get_available_wagons():
+		for station in stations.get_children():
+			if wagon.current_cell in station.get_pickup_cells():
+				station.pickup_passenger(wagon)
+				train.add_passenger(wagon)
+				return
 	
 	
 func try_pickup_item() -> void:

@@ -43,9 +43,6 @@ func move(target_cell: Vector2i, reposition: bool) -> void:
 		pos_tween.stop()
 	
 	pos_tween = create_tween()
-	var tweener = pos_tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed)
-	
+	var tweener = pos_tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed * 1.2)
+	tweener.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT_IN)
 	current_cell = target_cell
-#	rot_tween = create_tween()
-#	var tweener2 = rot_tween.tween_property($Sprite, ^"rotation", Vector2.DOWN.angle_to(new_direction), tween_speed)
-#	tweener2.from(Vector2.DOWN.angle_to(new_direction))

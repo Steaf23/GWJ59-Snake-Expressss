@@ -6,7 +6,7 @@
 
 [node name="TrainSection" type="Area2D" groups=["grid_object"]]
 script = ExtResource("1_o7jmh")
-tween_speed = 0.2
+tween_speed = 0.22
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(16, 16)

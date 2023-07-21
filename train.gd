@@ -123,16 +123,14 @@ func can_add_passenger() -> bool:
 	return false
 	
 	
-func add_passenger() -> void:
+func add_passenger(wagon: TrainWagon) -> void:
 	if not can_add_passenger():
 		return
 	
-	for wagon in wagons.get_children():
-		if wagon is TrainWagon:
-			if not wagon.has_passenger && wagon.can_have_passenger:
-				wagon.has_passenger = true
-				SoundManager.play_random_sfx([Sounds.PICKUP_1, Sounds.PICKUP_2, Sounds.PICKUP_3])
-				return
+	if not wagon.has_passenger && wagon.can_have_passenger:
+		wagon.has_passenger = true
+		SoundManager.play_random_sfx([Sounds.PICKUP_1, Sounds.PICKUP_2, Sounds.PICKUP_3])
+		return
 
 
 func pickup_item(item: Item) -> void:
@@ -143,13 +141,17 @@ func pickup_item(item: Item) -> void:
 
 
 func get_passenger_count() -> int:
-	var count: int = 0
+	# Head and Tail can not have passengers
+	return wagons.get_child_count() - get_available_wagons().size() - 2
+
+
+func get_available_wagons() -> Array[TrainWagon]:
+	var available_wagons: Array[TrainWagon] = []
 	for wagon in wagons.get_children():
 		if wagon is TrainWagon:
-			if wagon.has_passenger:
-				count += 1
-	
-	return count
+			if not wagon.has_passenger and wagon.can_have_passenger:
+				available_wagons.append(wagon)
+	return available_wagons
 
 
 func _on_sound_timer_timeout() -> void:

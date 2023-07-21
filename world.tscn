@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxdpcp5j12n46"]
+[gd_scene load_steps=13 format=3 uid="uid://cxdpcp5j12n46"]
 
 [ext_resource type="Script" path="res://grid.gd" id="1_1qjsb"]
 [ext_resource type="Texture2D" uid="uid://duu8qceldeudx" path="res://Assets/Art/BushesPacked.png" id="1_jxrvb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cx84v6dyo42jw" path="res://Assets/Art/SwampWater.png" id="2_uo0rg"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="5_25gom"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="6_leje5"]
+[ext_resource type="Resource" uid="uid://cyhjkmruomscy" path="res://Stations/circle_station.tres" id="6_rs57t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i85nu"]
 texture = ExtResource("1_jxrvb")
@@ -215,12 +216,18 @@ y_sort_enabled = true
 [node name="Station" parent="Grid/Stations" instance=ExtResource("5_25gom")]
 position = Vector2(224, 160)
 
+[node name="Station2" parent="Grid/Stations" instance=ExtResource("5_25gom")]
+position = Vector2(448, 160)
+entry = ExtResource("6_rs57t")
+
 [node name="Train" parent="Grid" instance=ExtResource("2_suilo")]
 position = Vector2(288, 64)
 
 [node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
 limit_left = 0
 limit_top = 0
+limit_right = 640
+limit_bottom = 352
 
 [node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
 position = Vector2(-256, -32)

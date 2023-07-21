@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://fooj2rtj3txq" path="res://Assets/Art/Newt.png" id="3_824on"]
 
 [sub_resource type="Gradient" id="Gradient_c477j"]
-offsets = PackedFloat32Array(0.00881057)
-colors = PackedColorArray(0.14902, 0.384314, 1, 1)
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0.00881058)
+colors = PackedColorArray(0.815686, 0.913725, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_shfu5"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_c477j")
 width = 30
 height = 20
