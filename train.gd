@@ -4,6 +4,17 @@ extends Node2D
 signal move_timer_timeout()
 signal item_picked_up()
 
+@export var base_movement_time: float = 0.22
+
+@export var grow_amount: int = 1
+@export var boost_multiplier: float = 0.5
+@export var boost_size: int = 20
+@export var big_grow_amount: int = 3
+@export var shrink_amoumt: int = 1
+var has_portal = false
+var boost_left: int = 0
+var old_boost_left: int = 0
+
 @onready var TRAIN_WAGON = preload("res://train_wagon.tscn")
 @onready var wagons = $Wagons
 @onready var head: TrainWagon = %Head
@@ -22,9 +33,9 @@ var sound_time_min = 7
 
 var is_biting: bool = false
 
+var first_move = true
 
 func _ready():
-	$MovementTimer.start(head.tween_speed)
 	current_cell = (head.global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
 	
 	head.current_cell = current_cell
@@ -39,6 +50,10 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input_vector != Vector2.ZERO:
+		if first_move:
+			first_move = false
+			$MovementTimer.start(base_movement_time)
+			move_timer_timeout.emit()
 		queued_input = input_vector
 
 
@@ -71,7 +86,13 @@ func move(precondition: Callable):
 			return
 		
 	current_cell = target_cell
-	update_wagons()
+	update_wagons($MovementTimer.wait_time)
+		
+	if boost_left > 0:
+		old_boost_left = boost_left
+		boost_left -= 1
+	elif boost_left == 0 and old_boost_left > 0:
+		end_boost()
 
 
 func add_wagon() -> void:
@@ -103,11 +124,11 @@ func add_wagon() -> void:
 	freeze_tail = false
 	
 	
-func update_wagons() -> void:
-	
+func update_wagons(tween_speed: float) -> void:
 	var target_cell = current_cell
 	for wagon in wagons.get_children():
 		var current_wagon_cell = wagon.current_cell
+		wagon.tween_speed = tween_speed
 		wagon.move(target_cell, wagon == head or not insert_new_wagon)
 		target_cell = current_wagon_cell
 		
@@ -118,8 +139,7 @@ func can_add_passenger() -> bool:
 	for wagon in wagons.get_children():
 		if wagon is TrainWagon:
 			if not wagon.has_passenger && wagon.can_have_passenger:
-				return true
-				
+				return true			
 	return false
 	
 	
@@ -133,9 +153,33 @@ func add_passenger(wagon: TrainWagon) -> void:
 		return
 
 
+func remove_passenger(wagon: TrainWagon) -> void:
+	if wagon.has_passenger:
+		SoundManager.play_random_sfx([Sounds.PICKUP_1, Sounds.PICKUP_2, Sounds.PICKUP_3])
+		
+	wagon.has_passenger = false
+
+
 func pickup_item(item: Item) -> void:
+	match item.type:
+		Item.ITEM_TYPE.Grow:
+			for i in grow_amount:
+				add_wagon()
+		Item.ITEM_TYPE.BigGrow:
+			for i in big_grow_amount:
+				add_wagon()
+		Item.ITEM_TYPE.Shrink:
+			for i in shrink_amoumt:
+				remove_wagon()
+		Item.ITEM_TYPE.Portal:
+			has_portal = true
+			add_wagon()
+		Item.ITEM_TYPE.Boost:
+			add_wagon()
+			boost_left = boost_size
+			start_boost()
+	
 	item.queue_free()
-	add_wagon()
 	end_bite()
 	item_picked_up.emit()
 
@@ -154,20 +198,46 @@ func get_available_wagons() -> Array[TrainWagon]:
 	return available_wagons
 
 
+func remove_wagon() -> void:
+	if wagons.get_child_count() == 2:
+		return
+	
+	var back_wagon: TrainWagon = wagons.get_child(wagons.get_child_count() - 2)
+	var idx = wagons.get_child_count() - 3
+	while back_wagon.has_passenger and back_wagon.can_have_passenger:
+		back_wagon = wagons.get_child(idx)
+		
+	if not back_wagon.can_have_passenger:
+		return
+	back_wagon.queue_free()
+
+
 func _on_sound_timer_timeout() -> void:
 	SoundManager.play_random_sfx(Sounds.HISSES)
 	$SoundTimer.start(sound_time_min + randi() % (sound_time_max - sound_time_min))
 
 
+func start_boost() -> void:
+	boost_left = boost_size
+	old_boost_left = boost_size
+	$MovementTimer.stop()
+	$MovementTimer.wait_time = boost_multiplier * base_movement_time
+	$MovementTimer.start()
+	
+	
+func end_boost() -> void:
+	$MovementTimer.stop()
+	$MovementTimer.wait_time = base_movement_time
+	$MovementTimer.start()
+	
+
 func start_bite() -> void:
 	is_biting = true
 	head_player.play("bite_start")
 	
-	
 func cancel_bite() -> void:
 	is_biting = false
 	head_player.play_backwards("bite_start")
-	
 	
 func end_bite() -> void:
 	is_biting = true

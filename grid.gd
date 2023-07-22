@@ -17,11 +17,16 @@ func _on_train_move_timer_timeout() -> void:
 	train.move(can_traverse)
 	try_pickup_passenger()
 	try_pickup_item()
+	try_deliver_passenger()
 	update_train_head()
 	
 	
 func can_traverse(grid_object: Node2D, cell: Vector2i) -> bool:
 	var tile_data = get_cell_tile_data(OBJECT_TYPES.Wall, cell)
+	
+	for station in stations.get_children():
+		if station.current_cell == cell:
+			return false
 	
 	return tile_data == null || tile_data.get_custom_data("type") != 1
 
@@ -30,14 +35,26 @@ func try_pickup_passenger():
 	if not train.can_add_passenger():
 		return
 	
-	
 	for wagon in train.get_available_wagons():
 		for station in stations.get_children():
-			if wagon.current_cell in station.get_pickup_cells():
+			if wagon.current_cell in station.get_pickup_cells() and not station.is_delivery:
 				station.pickup_passenger(wagon)
 				train.add_passenger(wagon)
 				return
-	
+
+
+func try_deliver_passenger():
+	if train.get_passenger_count() > 0:
+		return
+		
+	for wagon in train.wagons.get_children():
+		if !wagon.has_passenger or !wagon.can_have_passenger:
+			continue
+		for station in stations.get_children():
+			if wagon.current_cell in station.get_pickup_cells() and station.is_delivery:
+				train.remove_passenger(wagon)
+				return
+
 	
 func try_pickup_item() -> void:
 	for item in items.get_children():

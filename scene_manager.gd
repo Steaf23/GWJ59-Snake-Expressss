@@ -1,7 +1,6 @@
 extends Node
 
 @onready var game_layer = $GameLayer
-@onready var hud_layer = $HUDLayer
 
 @onready var GAME_CONTAINER = preload("res://game_container.tscn")
 

@@ -1,5 +1,5 @@
 @tool
-class_name Station
+class_name DeliveryStation
 extends Node2D
 
 enum STATION_TYPE {

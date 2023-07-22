@@ -7,8 +7,8 @@
 
 [sub_resource type="Gradient" id="Gradient_c477j"]
 resource_local_to_scene = true
-offsets = PackedFloat32Array(0.00881058)
-colors = PackedColorArray(0.815686, 0.913725, 1, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_shfu5"]
 resource_local_to_scene = true
@@ -175,6 +175,7 @@ texture = ExtResource("1_4qhth")
 hframes = 2
 
 [node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.14902, 0.384314, 1, 1)
 position = Vector2(16, -13)
 texture = SubResource("GradientTexture2D_shfu5")
 

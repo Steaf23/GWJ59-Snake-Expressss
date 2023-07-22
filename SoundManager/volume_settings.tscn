@@ -20,7 +20,7 @@ bus = &"Master"
 
 [node name="HSlider" parent="Master" index="1"]
 step = 1.0
-value = 30.0
+value = 20.0
 
 [node name="Music" parent="." instance=ExtResource("1_338k6")]
 layout_mode = 2

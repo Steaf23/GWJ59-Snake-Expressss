@@ -3,8 +3,12 @@ class_name Item
 extends Node2D
 
 enum ITEM_TYPE {
+	None,
 	Grow,
 	Boost,
+	BigGrow,
+	Shrink,
+	Portal,
 }
 
 @export var type: ITEM_TYPE:

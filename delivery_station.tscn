@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://k1v62ydkbtqy"]
+
+[ext_resource type="Script" path="res://delivery_station.gd" id="1_oh14a"]
+[ext_resource type="Texture2D" uid="uid://cdl0tjw6hqs24" path="res://Assets/Art/Flag.png" id="1_rabys"]
+[ext_resource type="Texture2D" uid="uid://cojf82iphpo2w" path="res://Assets/Art/DeliveryStation.png" id="4_tq0e3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ppj6"]
+atlas = ExtResource("1_rabys")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtx3j"]
+atlas = ExtResource("1_rabys")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq8e7"]
+atlas = ExtResource("1_rabys")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78d43"]
+atlas = ExtResource("1_rabys")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_asina"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ppj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtx3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq8e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78d43")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DeliveryStation" type="Node2D"]
+script = ExtResource("1_oh14a")
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.14902, 0.384314, 1, 1)
+position = Vector2(15, -15)
+sprite_frames = SubResource("SpriteFrames_asina")
+autoplay = "default"
+frame_progress = 0.230501
+
+[node name="Station" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("4_tq0e3")
+centered = false
