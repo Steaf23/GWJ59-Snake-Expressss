@@ -69,7 +69,6 @@ func update_train_head() -> void:
 	
 	for item in items.get_children():
 		if abs(train.current_cell.x - item.current_cell.x) < 2 and abs(train.current_cell.y - item.current_cell.y) < 2:
-			print("CLOSE: " + str(train.current_cell) + " " + str(item.current_cell))
 			close_to_item = true
 			break
 	
