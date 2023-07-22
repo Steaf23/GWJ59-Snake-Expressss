@@ -7,7 +7,7 @@ func _ready() -> void:
 	
 	var lvl_counter = 0
 	for file in DirAccess.get_files_at("res://Levels"):
-		if not file.ends_with(".tscn"):
+		if not "level_" in file or not ".tscn" in file:
 			return
 		
 		lvl_counter += 1

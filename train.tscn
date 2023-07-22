@@ -110,6 +110,7 @@ process_callback = 0
 
 [node name="Head" parent="Wagons" instance=ExtResource("2_55dmj")]
 unique_name_in_owner = true
+z_index = 1
 can_have_passenger = false
 
 [node name="Sprite" parent="Wagons/Head" index="0"]
