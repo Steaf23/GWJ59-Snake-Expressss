@@ -10,3 +10,8 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = !get_tree().paused
 		
 		$MarginContainer.visible = get_tree().paused
+
+
+func unpause() -> void:
+	get_tree().paused = false
+	$MarginContainer.visible = get_tree().paused

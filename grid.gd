@@ -73,9 +73,9 @@ func update_train_head() -> void:
 			close_to_item = true
 			break
 	
-	if close_to_item && not train.is_biting:
+	if close_to_item:
 		train.start_bite()
-	elif train.is_biting:
+	elif not close_to_item && train.is_biting:
 		train.cancel_bite()
 
 

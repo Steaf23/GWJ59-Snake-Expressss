@@ -49,6 +49,18 @@ visible = false
 
 [node name="VolumeSettings" parent="PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("4_oqcix")]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainMenu" type="Button" parent="PauseLayer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[connection signal="pressed" from="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 
 [editable path="PauseLayer/MarginContainer/VBoxContainer/KeyRebind"]

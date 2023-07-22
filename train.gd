@@ -33,7 +33,6 @@ var queued_input = Vector2()
 var sound_time_max = 10
 var sound_time_min = 7
 
-var is_biting: bool = false
 var first_move = true
 
 
@@ -59,8 +58,8 @@ func _physics_process(delta: float) -> void:
 			move_timer_timeout.emit()
 		queued_input = input_vector
 		
-	boost_bar.visible = boost_left > 0
-	boost_bar.value = boost_left
+	boost_bar.visible = old_boost_left > 0
+	boost_bar.value = old_boost_left
 	
 	if has_portal:
 		head.modulate = Color(1.0, 1.0, 1.0, 0.5)
@@ -109,6 +108,7 @@ func move(precondition: Callable):
 		old_boost_left = boost_left
 		boost_left -= 1
 	elif boost_left == 0 and old_boost_left > 0:
+		old_boost_left = 0
 		end_boost()
 
 
@@ -199,9 +199,10 @@ func pickup_item(item: Item) -> void:
 			boost_left = boost_size
 			start_boost()
 	
-	item.queue_free()
 	end_bite()
 	item_picked_up.emit()
+	await get_tree().create_timer(base_movement_time / 2.0).timeout
+	item.queue_free()
 
 
 func get_passenger_count() -> int:
@@ -253,21 +254,33 @@ func end_boost() -> void:
 	$MovementTimer.wait_time = base_movement_time
 	$MovementTimer.start()
 	
+	
+var ending_bite := false
+var is_biting: = false
 
 func start_bite() -> void:
+	if ending_bite:
+		return
+	if not is_biting:
+		head_player.play("bite_start")
 	is_biting = true
-	head_player.play("bite_start")
 	
 func cancel_bite() -> void:
+	print("CANCEL BITEY")
+	if ending_bite:
+		return
+		
 	is_biting = false
 	head_player.play_backwards("bite_start")
 	
 func end_bite() -> void:
-	is_biting = true
+	is_biting = false
+	ending_bite = true
+	head_player.stop()
 	head_player.play("bite_end")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"bite_end":
-			is_biting = false
+			ending_bite = false

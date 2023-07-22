@@ -1,6 +1,7 @@
 extends Node
 
 @onready var game_layer = $GameLayer
+@onready var pause_layer = $PauseLayer
 
 @onready var GAME_CONTAINER = preload("res://game_container.tscn")
 
@@ -16,16 +17,12 @@ func _ready() -> void:
 	
 	
 func switch(scene_path: String, use_viewport: bool = false) -> void:
+	current_level = 0
 	for child in game_layer.get_children():
 		child.queue_free()
 		
-	if !use_viewport:
-		game_layer.add_child(load(scene_path).instantiate())
-		return
-	
-	var vp = GAME_CONTAINER.instantiate()
-	game_layer.add_child(vp)
-	vp.get_node("SubViewport").add_child(load(scene_path).instantiate())
+	game_layer.add_child(load(scene_path).instantiate())
+	return
 
 
 func _on_new_scene_requested(scene_path: String) -> void:
@@ -59,7 +56,16 @@ func load_level(level: int) -> void:
 		print("No Level " + str(level + 1) + " exists in res://Levels!")
 		switch("res://main_menu.tscn", false)
 		return
-	switch("res://Levels/level_" + str(level + 1) + ".tscn", true)
-		
-		
+	var scene_path = "res://Levels/level_" + str(level + 1) + ".tscn"
 	
+	for child in game_layer.get_children():
+		child.queue_free()
+	
+	var vp = GAME_CONTAINER.instantiate()
+	game_layer.add_child(vp)
+	vp.get_node("SubViewport").add_child(load(scene_path).instantiate())
+		
+		
+func _on_main_menu_pressed() -> void:
+	switch("res://main_menu.tscn")
+	pause_layer.unpause()

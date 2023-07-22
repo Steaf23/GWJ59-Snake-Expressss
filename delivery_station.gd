@@ -31,11 +31,6 @@ var current_cell: Vector2i
 func _ready() -> void:
 	self.entry = entry
 	current_cell = (global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
-	
-	if $Count != null:
-		$Count.text = str(passenger_count)
-	if $Sprite2D != null:
-		$Sprite2D.frame = 0 if passenger_count > 0 else 1
 
 
 func get_pickup_cells() -> Array[Vector2i]:
