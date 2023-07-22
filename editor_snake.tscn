@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://vhslgitis5ei"]
+
+[ext_resource type="Texture2D" uid="uid://8ghckq5sp4h5" path="res://Assets/Art/SnakeTrain_Head1.png" id="1_g8u86"]
+
+[node name="EditorSnake" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g8u86")
+centered = false

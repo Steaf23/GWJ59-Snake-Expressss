@@ -13,7 +13,8 @@ enum OBJECT_TYPES {
 }
 
 func _ready() -> void:
-	train.move_timer_timeout.connect(_on_train_move_timer_timeout)
+	if train != null:
+		train.move_timer_timeout.connect(_on_train_move_timer_timeout)
 
 
 func _on_train_move_timer_timeout() -> void:

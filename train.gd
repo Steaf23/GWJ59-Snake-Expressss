@@ -35,7 +35,6 @@ var sound_time_min = 7
 
 var first_move = true
 
-
 func _ready():
 	boost_bar.max_value = boost_size
 	current_cell = (head.global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
@@ -226,14 +225,15 @@ func remove_wagon() -> void:
 	if wagons.get_child_count() == 2:
 		return
 	
-	var back_wagon: TrainWagon = wagons.get_child(wagons.get_child_count() - 2)
+	var back_wagon = null
 	var idx = wagons.get_child_count() - 3
-	while back_wagon.has_passenger and back_wagon.can_have_passenger:
-		back_wagon = wagons.get_child(idx)
+	for i in range(0, wagons.get_child_count()):
+		back_wagon = wagons.get_child(wagons.get_child_count() - i - 1)
+		if not back_wagon.has_passenger and back_wagon.can_have_passenger:
+			break
 		
-	if not back_wagon.can_have_passenger:
-		return
-	back_wagon.queue_free()
+	if back_wagon.can_have_passenger:
+		back_wagon.queue_free()
 
 
 func _on_sound_timer_timeout() -> void:
@@ -266,7 +266,6 @@ func start_bite() -> void:
 	is_biting = true
 	
 func cancel_bite() -> void:
-	print("CANCEL BITEY")
 	if ending_bite:
 		return
 		

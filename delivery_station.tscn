@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://k1v62ydkbtqy"]
 
 [ext_resource type="Script" path="res://delivery_station.gd" id="1_oh14a"]
-[ext_resource type="Texture2D" uid="uid://k6wg2ihyasjn" path="res://Assets/Art/Flag.png" id="1_rabys"]
-[ext_resource type="Texture2D" uid="uid://b861tqxhv1ait" path="res://Assets/Art/DeliveryStation.png" id="4_tq0e3"]
+[ext_resource type="Texture2D" uid="uid://cdl0tjw6hqs24" path="res://Assets/Art/Flag.png" id="1_rabys"]
+[ext_resource type="Texture2D" uid="uid://cojf82iphpo2w" path="res://Assets/Art/DeliveryStation.png" id="4_tq0e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ppj6"]
 atlas = ExtResource("1_rabys")
