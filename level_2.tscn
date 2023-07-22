@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhfsf6pihen2x"]
+
+[ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_pk5pf"]
+[ext_resource type="Script" path="res://grid.gd" id="2_w5afw"]
+[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_6eh8u"]
+[ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="4_6qt8h"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="5_163ti"]
+[ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="6_aidtb"]
+
+[node name="Level_2" type="Node2D"]
+
+[node name="Grid" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_pk5pf")
+format = 2
+layer_0/tile_data = PackedInt32Array(327689, 3, 0, 262153, 3, 0, 196609, 3, 0, 262145, 3, 0, 327681, 3, 0, 393217, 3, 0, 458753, 3, 0, 524289, 3, 0, 196611, 3, 0, 262147, 3, 0, 327683, 3, 0, 393219, 3, 0, 458755, 3, 0, 524291, 3, 0, 524292, 3, 0, 458756, 3, 0, 393220, 3, 0, 327684, 3, 0, 262148, 3, 0, 196612, 3, 0, 196613, 3, 0, 262149, 3, 0, 327685, 3, 0, 393221, 3, 0, 458757, 3, 0, 524293, 3, 0, 393222, 3, 0, 262150, 3, 0, 196614, 3, 0, 262151, 3, 0, 262152, 3, 0, 327690, 3, 0, 262154, 3, 0, 262155, 3, 0, 327691, 3, 0, 327692, 3, 0, 262156, 3, 0, 196621, 3, 0, 262157, 3, 0, 327693, 3, 0, 393229, 3, 0, 458765, 3, 0, 393230, 3, 0, 327694, 3, 0, 262158, 3, 0, 196622, 3, 0, 458767, 3, 0, 327688, 3, 0, 327687, 3, 0, 327686, 3, 0, 524290, 3, 0, 458754, 3, 0, 393218, 3, 0, 262146, 3, 0, 196610, 3, 0, 327682, 3, 0, 131073, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 458770, 3, 0, 524306, 3, 0, 524305, 3, 0, 524304, 3, 0, 524303, 3, 0, 524302, 3, 0, 524301, 3, 0, 458766, 3, 0, 458768, 3, 0, 458769, 3, 0, 393233, 3, 0, 393232, 3, 0, 393231, 3, 0, 327695, 3, 0, 327696, 3, 0, 327697, 3, 0, 262161, 3, 0, 196625, 3, 0, 196624, 3, 0, 196623, 3, 0, 131087, 3, 0, 131088, 3, 0, 131089, 3, 0, 131086, 3, 0, 131085, 3, 0, 131078, 3, 0, 131077, 3, 0, 131076, 3, 0, 131075, 3, 0, 131074, 3, 0, 262159, 3, 0, 262160, 3, 0, 393223, 3, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589837, 3, 0, 589838, 3, 0, 589839, 3, 0, 589840, 3, 0, 589841, 3, 0, 589842, 3, 0, 589835, 3, 0, 589836, 3, 0, 458764, 3, 0, 458763, 3, 0, 524299, 3, 0, 524300, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 196619, 3, 0, 196620, 3, 0, 131083, 3, 0, 131082, 3, 0, 131081, 3, 0, 131080, 3, 0, 131079, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 3, 0, 131084, 3, 0)
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(458757, 2, 1, 524293, 131074, 1, 589829, 131074, 1, 393220, 2, 1, 393219, 65538, 1, 393218, 2, 1, 393221, 2, 1, 589825, 131074, 1, 262158, 65538, 1, 196622, 65538, 1, 196621, 2, 1, 262157, 131074, 1, 327694, 131074, 1, 262159, 131074, 1, 196623, 65538, 1, 327693, 2, 1, 327695, 2, 1, 589836, 65538, 1, 589840, 131074, 1, 524299, 65538, 1, 524305, 2, 1, 589842, 131074, 1, 524306, 2, 1, 458770, 2, 1, 131073, 131074, 0, 196618, 2, 0, 65544, 65538, 0, 65537, 2, 0, 393224, 65538, 0, 589835, 2, 0, 589841, 131074, 0, 393231, 2, 0, 262148, 131074, 0, 589826, 2, 0, 589828, 131074, 0, 458756, 2, 0, 458754, 131074, 0, 1, 65536, 1, 2, 65536, 1, 3, 65536, 1, 4, 65536, 1, 5, 65536, 1, 6, 65536, 1, 7, 65536, 1, 8, 65536, 1, 9, 65536, 1, 10, 65536, 1, 11, 65536, 1, 13, 131072, 0, 65549, 131072, 1, 14, 196608, 0, 65550, 196608, 1, 15, 262144, 0, 65551, 262144, 1, 65552, 327680, 1, 65553, 327680, 1, 65554, 393216, 1, 131090, 393216, 2, 196626, 393216, 2, 262162, 393216, 2, 327698, 393216, 2, 393234, 262144, 4, 393235, 393216, 1, 458771, 393216, 2, 524307, 393216, 2, 589843, 393216, 2, 655379, 393216, 3, 655378, 327680, 3, 655377, 327680, 3, 655376, 327680, 3, 655375, 327680, 3, 655374, 327680, 3, 655373, 327680, 3, 655372, 327680, 3, 655371, 327680, 3, 655370, 0, 3, 589834, 0, 2, 524298, 0, 2, 655361, 65536, 3, 655362, 65536, 3, 655363, 65536, 3, 655364, 65536, 3, 655365, 65536, 3, 589824, 0, 2, 524288, 0, 2, 458752, 0, 2, 393216, 0, 2, 327680, 0, 2, 262144, 0, 2, 196608, 0, 2, 131072, 0, 2, 65536, 0, 2, 0, 0, 1, 12, 393216, 1, 65548, 262144, 4, 655360, 0, 3, 655366, 393216, 3, 458758, 262144, 3, 458762, 131072, 3, 524294, 393216, 2, 589830, 393216, 2, 458759, 65536, 3, 458760, 65536, 3, 458761, 65536, 3)
+script = ExtResource("2_w5afw")
+
+[node name="Stations" type="Node2D" parent="Grid"]
+y_sort_enabled = true
+
+[node name="Station" parent="Grid/Stations" instance=ExtResource("3_6eh8u")]
+position = Vector2(448, 32)
+starting_count = 4
+
+[node name="DeliveryStation" parent="Grid/Stations" instance=ExtResource("4_6qt8h")]
+position = Vector2(448, 288)
+
+[node name="Train" parent="Grid" instance=ExtResource("5_163ti")]
+position = Vector2(96, 64)
+boost_multiplier = 0.7
+
+[node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
+position = Vector2(160, -32)
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 352
+
+[node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
+position = Vector2(-256, -32)
+
+[node name="Corner2" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="1"]
+position = Vector2(384, 320)
+
+[node name="ReferenceRect" parent="Grid/Train/Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = -640.0
+offset_bottom = -368.0
+
+[node name="Items" type="Node2D" parent="Grid"]
+
+[node name="Item" parent="Grid/Items" instance=ExtResource("6_aidtb")]
+position = Vector2(96, 256)
+type = 3
+
+[node name="Item2" parent="Grid/Items" instance=ExtResource("6_aidtb")]
+position = Vector2(32, 192)
+type = 2
+
+[connection signal="move_timer_timeout" from="Grid/Train" to="Grid" method="_on_train_move_timer_timeout"]
+
+[editable path="Grid/Train"]
+[editable path="Grid/Train/Wagons/Head"]
+[editable path="Grid/Train/Wagons/Head/BoundCamera2D"]
+[editable path="Grid/Train/Wagons/Tail"]
