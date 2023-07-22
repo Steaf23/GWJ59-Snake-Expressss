@@ -64,11 +64,13 @@ offset_bottom = -368.0
 
 [node name="Item" parent="Grid/Items" instance=ExtResource("6_leje5")]
 position = Vector2(384, 160)
-type = 1
+type = 5
 
 [node name="Item2" parent="Grid/Items" instance=ExtResource("6_leje5")]
 position = Vector2(320, 192)
 type = 2
+
+[connection signal="move_timer_timeout" from="Grid/Train" to="Grid" method="_on_train_move_timer_timeout"]
 
 [editable path="Grid/Train"]
 [editable path="Grid/Train/Wagons/Head"]

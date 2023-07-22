@@ -34,8 +34,8 @@ var sound_time_max = 10
 var sound_time_min = 7
 
 var is_biting: bool = false
-
 var first_move = true
+
 
 func _ready():
 	boost_bar.max_value = boost_size
@@ -61,6 +61,13 @@ func _physics_process(delta: float) -> void:
 		
 	boost_bar.visible = boost_left > 0
 	boost_bar.value = boost_left
+	
+	if has_portal:
+		head.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	else:
+		if head.modulate.a < 1.0:
+			await get_tree().create_timer(base_movement_time).timeout
+			head.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func _on_movement_timer_timeout() -> void:
@@ -87,6 +94,10 @@ func move(precondition: Callable):
 		
 	for wagon in wagons.get_children():
 		if wagon is TrainWagon and wagon.current_cell == target_cell:
+			if has_portal:
+				has_portal = false
+				continue
+				
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
 			SceneSignalBus.reload_level()
 			return
