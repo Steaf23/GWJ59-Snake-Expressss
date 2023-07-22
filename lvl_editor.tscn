@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://bb7w2e4t41k4h"]
+
+[ext_resource type="PackedScene" uid="uid://7lpv3pp12h0j" path="res://game_container.tscn" id="1_dwfkr"]
+[ext_resource type="Script" path="res://lvl_editor.gd" id="1_q8f8h"]
+[ext_resource type="Texture2D" uid="uid://c0wdhug8lrf54" path="res://Assets/Art/SnakeTrain_Head1.png" id="3_1d1qp"]
+[ext_resource type="Texture2D" uid="uid://34vj2sj3ffap" path="res://Assets/Art/station_roof.png" id="4_bubux"]
+[ext_resource type="Texture2D" uid="uid://b861tqxhv1ait" path="res://Assets/Art/DeliveryStation.png" id="5_uyrml"]
+[ext_resource type="Texture2D" uid="uid://bga8bbo6w52lg" path="res://Assets/Art/SwampStone1.png" id="6_a07hk"]
+[ext_resource type="Texture2D" uid="uid://d35ctec6lkigu" path="res://Assets/Art/SwampMisc1.png" id="7_vw4no"]
+[ext_resource type="Texture2D" uid="uid://ck4gm82uud6lm" path="res://Assets/Art/StationBush.png" id="8_r4br5"]
+[ext_resource type="Texture2D" uid="uid://6dhnx5gxdrau" path="res://Assets/Art/GrowthFruit.png" id="9_b0mqt"]
+[ext_resource type="Texture2D" uid="uid://csdmi2024ri72" path="res://Assets/Art/GrowthFruitBig.png" id="10_gd08f"]
+[ext_resource type="Texture2D" uid="uid://dyyx27sosuh65" path="res://Assets/Art/BoostFruit.png" id="11_1km17"]
+[ext_resource type="Texture2D" uid="uid://djjhxf18haci8" path="res://Assets/Art/ShrinkFruit.png" id="12_wspdg"]
+[ext_resource type="Texture2D" uid="uid://763te2j4d2bp" path="res://Assets/Art/GhostFruit.png" id="13_eyjva"]
+
+[node name="Editor" type="Node"]
+process_mode = 3
+script = ExtResource("1_q8f8h")
+
+[node name="GameContainer" parent="." instance=ExtResource("1_dwfkr")]
+process_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Save" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Load" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="New" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "New"
+
+[node name="LineEdit" type="SpinBox" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -208.0
+offset_right = 73.0
+offset_bottom = 208.0
+grow_vertical = 2
+size_flags_horizontal = 3
+auto_height = true
+item_count = 11
+fixed_icon_size = Vector2i(64, 64)
+item_0/text = ""
+item_0/icon = ExtResource("3_1d1qp")
+item_1/text = ""
+item_1/icon = ExtResource("4_bubux")
+item_2/text = ""
+item_2/icon = ExtResource("5_uyrml")
+item_3/text = ""
+item_3/icon = ExtResource("6_a07hk")
+item_4/text = ""
+item_4/icon = ExtResource("7_vw4no")
+item_5/text = ""
+item_5/icon = ExtResource("8_r4br5")
+item_6/text = ""
+item_6/icon = ExtResource("9_b0mqt")
+item_7/text = ""
+item_7/icon = ExtResource("10_gd08f")
+item_8/text = ""
+item_8/icon = ExtResource("11_1km17")
+item_9/text = ""
+item_9/icon = ExtResource("12_wspdg")
+item_10/text = ""
+item_10/icon = ExtResource("13_eyjva")
