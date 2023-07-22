@@ -22,6 +22,7 @@ var old_boost_left: int = 0
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 
 var current_direction : Vector2i = Vector2i.DOWN
+var wagon_queue: int = 0
 var insert_new_wagon: bool = false
 var current_cell: Vector2i
 var freeze_tail = false
@@ -76,13 +77,13 @@ func move(precondition: Callable):
 	
 	if not precondition.call(self, target_cell):
 		SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
-		SceneSignalBus.request_change_scene("res://world.tscn")
+		SceneSignalBus.reload_level()
 		return
 		
 	for wagon in wagons.get_children():
 		if wagon is TrainWagon and wagon.current_cell == target_cell:
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
-			SceneSignalBus.request_change_scene("res://world.tscn")
+			SceneSignalBus.reload_level()
 			return
 		
 	current_cell = target_cell
@@ -96,11 +97,26 @@ func move(precondition: Callable):
 
 
 func add_wagon() -> void:
-	if insert_new_wagon:
-		# TODO: create wagon queue
-		print("Cannot insert 2 new wagons at once!")
-		return
+	wagon_queue += 1
+	
+	
+func update_wagons(tween_speed: float) -> void:	
+	# add wagon if queue is bigger than 0
+	var wagon_created = false
+	if wagon_queue > 0:
+		wagon_created = true
+		wagon_queue -= 1
+		create_wagon()
 		
+	var target_cell = current_cell
+	for wagon in wagons.get_children():
+		var current_wagon_cell = wagon.current_cell
+		wagon.tween_speed = tween_speed
+		wagon.move(target_cell, wagon == head or not wagon_created)
+		target_cell = current_wagon_cell
+
+
+func create_wagon() -> void:
 	var wagon = TRAIN_WAGON.instantiate()
 	wagons.add_child(wagon)
 	wagons.move_child(wagon, 1)
@@ -109,7 +125,6 @@ func add_wagon() -> void:
 	wagon.current_cell = new_wagon_cell
 	wagon.rotation = rotation
 	wagon.target_angle = wagon.rotation
-	insert_new_wagon = true
 	
 	var scale_tween = create_tween()
 	var t1 = scale_tween.tween_property(wagon, ^"scale", Vector2(1.0, 1.0), wagon.tween_speed)
@@ -117,22 +132,11 @@ func add_wagon() -> void:
 	
 	var opacity_tween = create_tween()
 	var t3 = opacity_tween.tween_property(wagon, ^"modulate", Color.WHITE, wagon.tween_speed)
-	t3.from(Color(1, 1, 1, 0)).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	t3.from(Color(1, 1, 1, 0)).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)	
 	
 	freeze_tail = true
 	await get_tree().create_timer(wagon.tween_speed).timeout
 	freeze_tail = false
-	
-	
-func update_wagons(tween_speed: float) -> void:
-	var target_cell = current_cell
-	for wagon in wagons.get_children():
-		var current_wagon_cell = wagon.current_cell
-		wagon.tween_speed = tween_speed
-		wagon.move(target_cell, wagon == head or not insert_new_wagon)
-		target_cell = current_wagon_cell
-		
-	insert_new_wagon = false
 
 
 func can_add_passenger() -> bool:
@@ -185,8 +189,11 @@ func pickup_item(item: Item) -> void:
 
 
 func get_passenger_count() -> int:
-	# Head and Tail can not have passengers
-	return wagons.get_child_count() - get_available_wagons().size() - 2
+	var count = 0
+	for wagon in wagons.get_children():
+		if wagon.has_passenger:
+			count += 1
+	return count
 
 
 func get_available_wagons() -> Array[TrainWagon]:

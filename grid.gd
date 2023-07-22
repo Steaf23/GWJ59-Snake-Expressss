@@ -14,6 +14,7 @@ enum OBJECT_TYPES {
 
 
 func _on_train_move_timer_timeout() -> void:
+	check_level_won()
 	train.move(can_traverse)
 	try_pickup_passenger()
 	try_pickup_item()
@@ -44,12 +45,13 @@ func try_pickup_passenger():
 
 
 func try_deliver_passenger():
-	if train.get_passenger_count() > 0:
+	if train.get_passenger_count() == 0:
 		return
 		
 	for wagon in train.wagons.get_children():
-		if !wagon.has_passenger or !wagon.can_have_passenger:
+		if !wagon.can_have_passenger or !wagon.has_passenger:
 			continue
+
 		for station in stations.get_children():
 			if wagon.current_cell in station.get_pickup_cells() and station.is_delivery:
 				train.remove_passenger(wagon)
@@ -75,3 +77,15 @@ func update_train_head() -> void:
 		train.start_bite()
 	elif train.is_biting:
 		train.cancel_bite()
+
+
+
+func check_level_won() -> void:
+	if train.get_passenger_count() != 0:
+		return
+	
+	for station in stations.get_children():
+		if station.passenger_count != 0:
+			return
+			
+	SceneSignalBus.next_level()

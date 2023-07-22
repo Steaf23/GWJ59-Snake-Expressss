@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func get_pickup_cells() -> Array[Vector2i]:
-	if passenger_count <= 0:
+	if passenger_count <= 0 and not self.is_delivery:
 		return []
 		
 	var cells: Array[Vector2i] = []
@@ -49,6 +49,7 @@ func get_pickup_cells() -> Array[Vector2i]:
 
 
 func pickup_passenger(wagon: TrainWagon) -> void:
+	print("pickup passenger from " + get_name())
 	passenger_count -= 1
 	$Count.text = str(passenger_count)
 	$Sprite2D.frame = 0 if passenger_count > 0 else 1

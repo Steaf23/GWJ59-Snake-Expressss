@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://train.gd" id="1_3y54e"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://train_wagon.tscn" id="2_55dmj"]
-[ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
-[ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
+[ext_resource type="Texture2D" uid="uid://brja8a8d2c1vy" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
+[ext_resource type="Texture2D" uid="uid://dytvctiebqjli" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
 [ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_164jo"]
 [ext_resource type="Script" path="res://powerup_helper.gd" id="6_dnjwl"]
 
