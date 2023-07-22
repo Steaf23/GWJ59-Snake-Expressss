@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
-	SceneSignalBus.request_change_scene("res://world.tscn")
+	SceneSignalBus.request_change_scene("res://level_4.tscn")

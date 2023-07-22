@@ -21,6 +21,12 @@ enum ITEM_TYPE {
 				texture = "res://Assets/Art/GrowthFruit.png"
 			ITEM_TYPE.Boost:
 				texture = "res://Assets/Art/BoostFruit.png"
+			ITEM_TYPE.BigGrow:
+				texture = "res://Assets/Art/GrowthFruitBig.png"
+			ITEM_TYPE.Shrink:
+				texture = "res://Assets/Art/ShrinkFruit.png"
+			ITEM_TYPE.Portal:
+				texture = "res://Assets/Art/GhostFruit.png"
 		
 		if $Sprite2D == null:
 			await ready
