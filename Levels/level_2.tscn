@@ -35,7 +35,6 @@ position = Vector2(448, 288)
 
 [node name="Train" parent="Grid" instance=ExtResource("5_163ti")]
 position = Vector2(96, 64)
-boost_multiplier = 0.7
 
 [node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
 position = Vector2(160, -32)

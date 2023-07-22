@@ -40,12 +40,7 @@ position = Vector2(96, 256)
 
 [node name="Train" parent="Grid" instance=ExtResource("2_suilo")]
 position = Vector2(288, 64)
-base_movement_time = 0.22
-grow_amount = 1
 boost_multiplier = 0.7
-boost_size = 20
-big_grow_amount = 3
-shrink_amoumt = 1
 
 [node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
 limit_left = 0

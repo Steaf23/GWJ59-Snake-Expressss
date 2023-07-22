@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready() -> void:
+	$Button.grab_focus()
 	SoundManager.play_music("res://Assets/Audio/background ambience.wav")
 	
 	var lvl_counter = 0

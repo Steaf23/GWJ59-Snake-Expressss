@@ -20,6 +20,7 @@ var old_boost_left: int = 0
 @onready var head: TrainWagon = %Head
 @onready var tail: TrainWagon = %Tail
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
+@onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
 
 var current_direction : Vector2i = Vector2i.DOWN
 var wagon_queue: int = 0
@@ -37,6 +38,7 @@ var is_biting: bool = false
 var first_move = true
 
 func _ready():
+	boost_bar.max_value = boost_size
 	current_cell = (head.global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
 	
 	head.current_cell = current_cell
@@ -56,6 +58,9 @@ func _physics_process(delta: float) -> void:
 			$MovementTimer.start(base_movement_time)
 			move_timer_timeout.emit()
 		queued_input = input_vector
+		
+	boost_bar.visible = boost_left > 0
+	boost_bar.value = boost_left
 
 
 func _on_movement_timer_timeout() -> void:
