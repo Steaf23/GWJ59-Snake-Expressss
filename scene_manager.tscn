@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="3_hhwlq"]
 [ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="4_oqcix"]
 [ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://ui_box.tscn" id="6_b7xlc"]
-[ext_resource type="FontFile" uid="uid://cn5q5auxuexle" path="res://Early GameBoy.ttf" id="6_q68gb"]
+[ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="6_q68gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk0w"]
 bg_color = Color(0, 0, 0, 0.462745)

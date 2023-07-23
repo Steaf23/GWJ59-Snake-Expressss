@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0yfnvr2ju2t8"]
+
+[ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="1_1f7nt"]
+[ext_resource type="Texture2D" uid="uid://cfidic8he717t" path="res://Assets/Art/Thank_You.png" id="1_5g5b4"]
+[ext_resource type="Script" path="res://end_screen.gd" id="2_1e3y1"]
+[ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://ui_box.tscn" id="3_jl5v0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4ocr"]
+font_size = 32
+font_color = Color(1, 1, 0.486275, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1f7nt")
+script = ExtResource("2_1e3y1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Thanks for playing!"
+label_settings = SubResource("LabelSettings_n4ocr")
+
+[node name="Control" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5g5b4")
+stretch_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -48.0
+offset_right = 140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="MainMenu" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_1f7nt")
+text = "Main Menu"
+flat = true
+
+[node name="UI_Box" parent="MarginContainer2/HBoxContainer/MainMenu" instance=ExtResource("3_jl5v0")]
+show_behind_parent = true
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

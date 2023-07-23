@@ -55,7 +55,7 @@ func load_level(level: int) -> void:
 	if not "level_" + str(level + 1) + ".tscn" in DirAccess.get_files_at("res://Levels") \
 	and not "level_" + str(level + 1) + ".tscn.remap" in DirAccess.get_files_at("res://Levels") :
 		print("No Level " + str(level + 1) + " exists in res://Levels!")
-		switch("res://main_menu.tscn", false)
+		switch("res://end_screen.tscn", false)
 		return
 	var scene_path = "res://Levels/level_" + str(level + 1) + ".tscn"
 	
