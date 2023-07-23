@@ -29,6 +29,7 @@ y_sort_enabled = true
 
 [node name="@Node2D@13" parent="Grid/Stations" instance=ExtResource("3_nbtmx")]
 position = Vector2(544, 64)
+starting_count = 14
 
 [node name="Station" parent="Grid/Stations" instance=ExtResource("5_0lq0s")]
 position = Vector2(544, 256)

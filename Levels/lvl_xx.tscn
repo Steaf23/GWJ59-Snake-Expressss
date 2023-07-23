@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://i08a75vvwr8y"]
+[gd_scene load_steps=5 format=3 uid="uid://i08a75vvwr8y"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_gwo76"]
 [ext_resource type="Script" path="res://grid.gd" id="2_6su0q"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="3_2uhh1"]
+[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_hr3p0"]
 
 [node name="Test Level" type="Node2D"]
 y_sort_enabled = true
@@ -25,6 +26,9 @@ infinite_level = true
 [node name="Stations" type="Node2D" parent="Grid"]
 y_sort_enabled = true
 
+[node name="Station" parent="Grid/Stations" instance=ExtResource("3_hr3p0")]
+position = Vector2(192, 128)
+
 [node name="Items" type="Node2D" parent="Grid"]
 
 [node name="Train" parent="Grid" instance=ExtResource("3_2uhh1")]
@@ -37,10 +41,10 @@ limit_right = 640
 limit_bottom = 352
 
 [node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
-position = Vector2(-256, 0)
+position = Vector2(-288, -32)
 
 [node name="Corner2" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="1"]
-position = Vector2(384, 352)
+position = Vector2(352, 320)
 
 [node name="ReferenceRect" parent="Grid/Train/Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
 offset_left = 0.0

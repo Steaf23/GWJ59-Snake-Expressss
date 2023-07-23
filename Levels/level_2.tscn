@@ -32,6 +32,7 @@ starting_count = 6
 
 [node name="DeliveryStation" parent="Grid/Stations" instance=ExtResource("5_7oxwa")]
 position = Vector2(32, 160)
+starting_count = 6
 
 [node name="Train" parent="Grid" instance=ExtResource("6_6kdau")]
 position = Vector2(64, 64)

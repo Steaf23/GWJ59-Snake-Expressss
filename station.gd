@@ -21,7 +21,10 @@ enum STATION_TYPE {
 
 
 @export var is_delivery: bool
-@export var starting_count: int = 2
+@export var starting_count: int = 2:
+	set(value):
+		starting_count = value
+		$Count.text = str(value)
 
 @onready var passenger_count: int = starting_count
 

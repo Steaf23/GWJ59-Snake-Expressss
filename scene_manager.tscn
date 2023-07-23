@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsr3jvnqih2fr"]
+[gd_scene load_steps=11 format=3 uid="uid://bsr3jvnqih2fr"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_4u5sb"]
 [ext_resource type="Script" path="res://pause_layer.gd" id="2_6is37"]
 [ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="3_1sihg"]
 [ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="3_hhwlq"]
 [ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="4_oqcix"]
+[ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://ui_box.tscn" id="6_b7xlc"]
 [ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="6_q68gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk0w"]
@@ -68,6 +69,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_1sihg")
 text = "Main Menu"
+flat = true
+
+[node name="UI_Box" parent="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" instance=ExtResource("6_b7xlc")]
+show_behind_parent = true
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5

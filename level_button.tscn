@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://dgq2tk52av5dr"]
+[gd_scene load_steps=2 format=3 uid="uid://dgq2tk52av5dr"]
+
+[ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://ui_box.tscn" id="1_jm7ib"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(64, 64)
+flat = true
+
+[node name="UI_Box" parent="." instance=ExtResource("1_jm7ib")]
+show_behind_parent = true
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0

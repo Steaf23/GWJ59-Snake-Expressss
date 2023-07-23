@@ -29,6 +29,7 @@ y_sort_enabled = true
 
 [node name="DeliveryStation" parent="Grid/Stations" instance=ExtResource("3_gsqk2")]
 position = Vector2(512, 288)
+starting_count = 8
 
 [node name="Station" parent="Grid/Stations" instance=ExtResource("5_w4k4p")]
 position = Vector2(512, 32)

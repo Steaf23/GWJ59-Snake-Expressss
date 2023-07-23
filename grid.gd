@@ -60,6 +60,7 @@ func try_deliver_passenger():
 
 		for station in stations.get_children():
 			if wagon.current_cell in station.get_pickup_cells() and station.is_delivery:
+				station.deliver_passenger(wagon)
 				train.remove_passenger(wagon)
 				return
 
@@ -93,7 +94,7 @@ func check_level_won() -> void:
 		return
 	
 	for station in stations.get_children():
-		if station.passenger_count != 0:
+		if not station.is_delivery and station.passenger_count != 0:
 			return
 	
 	SceneSignalBus.next_level()
