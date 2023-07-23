@@ -33,6 +33,7 @@ var queued_input = Vector2()
 var sound_time_max = 10
 var sound_time_min = 7
 
+var start_level = false
 var first_move = true
 
 func _ready():
@@ -41,9 +42,15 @@ func _ready():
 	
 	head.current_cell = current_cell
 	tail.current_cell = (tail.global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
+	
+	await get_tree().create_timer(0.5).timeout
+	start_level = true
 
 
 func _physics_process(delta: float) -> void:
+	if not start_level:
+		return
+		
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input_vector != Vector2.ZERO:
 		if first_move:

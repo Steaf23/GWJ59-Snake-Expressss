@@ -39,6 +39,8 @@ func play_music(path: String) -> void:
 
 func stop_music() -> void:
 	music_player.stop()
+	$DrumTimer.stop()
+	$Drums.stop()
 	
 	
 func muffle_music(muffle: bool) -> void:
