@@ -109,7 +109,6 @@ libraries = {
 }
 
 [node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_164jo")]
-position = Vector2(-32, -32)
 limit_left = -416
 limit_top = -192
 limit_right = 672
@@ -122,10 +121,10 @@ position = Vector2(-384, -160)
 position = Vector2(704, 480)
 
 [node name="ReferenceRect" parent="Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
-offset_left = -416.0
-offset_top = -192.0
-offset_right = -608.0
-offset_bottom = -272.0
+offset_left = -384.0
+offset_top = -160.0
+offset_right = -576.0
+offset_bottom = -240.0
 
 [node name="Tail" parent="Wagons" instance=ExtResource("2_55dmj")]
 unique_name_in_owner = true
