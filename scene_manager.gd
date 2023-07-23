@@ -52,7 +52,6 @@ func reload_current_level() -> void:
 
 func load_level(level: int) -> void:
 	current_level = level
-	print(DirAccess.get_files_at("res://Levels"))
 	if not "level_" + str(level + 1) + ".tscn" in DirAccess.get_files_at("res://Levels") \
 	and not "level_" + str(level + 1) + ".tscn.remap" in DirAccess.get_files_at("res://Levels") :
 		print("No Level " + str(level + 1) + " exists in res://Levels!")
@@ -69,5 +68,6 @@ func load_level(level: int) -> void:
 		
 		
 func _on_main_menu_pressed() -> void:
+	SoundManager.play_sfx(Sounds.MENU_CONFIRM)
 	switch("res://main_menu.tscn")
 	pause_layer.unpause()

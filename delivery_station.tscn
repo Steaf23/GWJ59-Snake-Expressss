@@ -41,6 +41,7 @@ animations = [{
 }]
 
 [node name="DeliveryStation" type="Node2D"]
+z_index = 1
 script = ExtResource("1_oh14a")
 is_delivery = true
 starting_count = 0

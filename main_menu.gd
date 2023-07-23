@@ -19,8 +19,10 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
+	SoundManager.play_sfx(Sounds.MENU_CONFIRM)
 	SceneSignalBus.reload_level()
 
 
 func _on_lvl_button_pressed(level: int) -> void:
+	SoundManager.play_sfx(Sounds.MENU_CONFIRM)
 	SceneSignalBus.load_level(level - 1)

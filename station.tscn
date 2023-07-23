@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://djlj1bhvc1kp8"]
 
-[ext_resource type="Texture2D" uid="uid://dqqwfbh3gdraj" path="res://Assets/Art/Station.png" id="1_4qhth"]
+[ext_resource type="Texture2D" uid="uid://cnwmmdyhxr0p3" path="res://Assets/Art/Station.png" id="1_4qhth"]
 [ext_resource type="Script" path="res://station.gd" id="1_vaplg"]
 [ext_resource type="Resource" uid="uid://rkk1053lsvvn" path="res://Stations/square_station.tres" id="2_ek3jj"]
-[ext_resource type="FontFile" uid="uid://cn5q5auxuexle" path="res://Early GameBoy.ttf" id="4_axegu"]
-[ext_resource type="Texture2D" uid="uid://c1i26q3hkipd5" path="res://Assets/Art/NewtGrey.png" id="5_6tnqr"]
+[ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="4_axegu"]
+[ext_resource type="Texture2D" uid="uid://hj8atsqwl00j" path="res://Assets/Art/NewtGrey.png" id="5_6tnqr"]
 
 [sub_resource type="Gradient" id="Gradient_c477j"]
 resource_local_to_scene = true
@@ -204,7 +204,7 @@ libraries = {
 }
 
 [node name="Newt" type="Sprite2D" parent="."]
-modulate = Color(0.87, 1.74, 2.09, 1)
+modulate = Color(0.756863, 1.74118, 2.0902, 1)
 position = Vector2(16, 16)
 texture = ExtResource("5_6tnqr")
 hframes = 2

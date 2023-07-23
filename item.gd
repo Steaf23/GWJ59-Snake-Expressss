@@ -37,3 +37,5 @@ var current_cell: Vector2i
 
 func _ready() -> void:
 	current_cell = (global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
+	$AnimationPlayer.advance(randf())
+	

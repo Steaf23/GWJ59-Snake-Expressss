@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://0ompna74v6kb"]
 
 [ext_resource type="Script" path="res://SoundManager/volume_slider.gd" id="1_ci3fq"]
-[ext_resource type="AudioStream" uid="uid://biwy7wbltj07h" path="res://Assets/Audio/Crash_Sound_1.wav" id="2_ppmuo"]
+[ext_resource type="AudioStream" uid="uid://b6li2bhv14yln" path="res://Assets/Audio/Menu_Scroll.wav" id="2_v3w2f"]
 
 [node name="VolumeSlider" type="HBoxContainer"]
 offset_right = 13.0
@@ -22,7 +22,7 @@ value = 100.0
 tick_count = 10
 
 [node name="TestSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ppmuo")
+stream = ExtResource("2_v3w2f")
 
 [connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

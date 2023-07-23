@@ -17,3 +17,16 @@ const HISSES: Array[StringName] = [
 	"res://Assets/Audio/SnakeHisses/Snake_Hiss_Short_5.wav",
 	"res://Assets/Audio/SnakeHisses/Snake_Hiss_Short_6.wav",
 ]
+const DELIVERY_1: StringName = "res://Assets/Audio/Passenger_Dropoff_1.wav"
+const DELIVERY_2: StringName = "res://Assets/Audio/Passenger_Dropoff_2.wav"
+const DELIVERY_3: StringName = "res://Assets/Audio/Passenger_Dropoff_3.wav"
+const FRUIT_1: StringName = "res://Assets/Audio/Fruit_Subtler_1.wav"
+const FRUIT_2: StringName = "res://Assets/Audio/Fruit_Subtler_2.wav"
+const FRUIT_3: StringName = "res://Assets/Audio/Fruit_Subtler_3.wav"
+const MENU_CLICK: StringName = "res://Assets/Audio/Menu_Scroll.wav"
+const MENU_CONFIRM: StringName = "res://Assets/Audio/Menu_Select.wav"
+const TURN_1: StringName = "res://Assets/Audio/Rotate_1.wav"
+const TURN_2: StringName = "res://Assets/Audio/Rotate_2.wav"
+const TURN_3: StringName = "res://Assets/Audio/Rotate_3.wav"
+const POWERUP_1: StringName = "res://Assets/Audio/SuperFruit_1.wav"
+const POWERUP_2: StringName = "res://Assets/Audio/SuperFruit_2.wav"

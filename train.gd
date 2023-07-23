@@ -73,6 +73,8 @@ func _on_movement_timer_timeout() -> void:
 
 
 func move(precondition: Callable):
+	var prev_direction = current_direction
+	
 	var input = queued_input
 	match (current_direction):
 		Vector2i.LEFT, Vector2i.RIGHT:
@@ -99,6 +101,9 @@ func move(precondition: Callable):
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
 			SceneSignalBus.reload_level()
 			return
+	
+	if prev_direction != current_direction:
+		SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
 		
 	current_cell = target_cell
 	update_wagons($MovementTimer.wait_time)
@@ -174,14 +179,16 @@ func add_passenger(wagon: TrainWagon) -> void:
 
 func remove_passenger(wagon: TrainWagon) -> void:
 	if wagon.has_passenger:
-		SoundManager.play_random_sfx([Sounds.PICKUP_1, Sounds.PICKUP_2, Sounds.PICKUP_3])
+		SoundManager.play_random_sfx([Sounds.DELIVERY_1, Sounds.DELIVERY_2, Sounds.DELIVERY_3])
 		
 	wagon.has_passenger = false
 
 
 func pickup_item(item: Item) -> void:
+	var powerup = true
 	match item.type:
 		Item.ITEM_TYPE.Grow:
+			powerup = false
 			for i in grow_amount:
 				add_wagon()
 		Item.ITEM_TYPE.BigGrow:
@@ -197,6 +204,11 @@ func pickup_item(item: Item) -> void:
 			add_wagon()
 			boost_left = boost_size
 			start_boost()
+			
+	if powerup:
+		SoundManager.play_random_sfx([Sounds.POWERUP_1, Sounds.POWERUP_2])
+	else:
+		SoundManager.play_random_sfx([Sounds.FRUIT_1, Sounds.FRUIT_2, Sounds.FRUIT_3])
 	
 	end_bite()
 	item_picked_up.emit()
