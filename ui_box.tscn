@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://kk6turlv1sy3"]
+
+[ext_resource type="Texture2D" uid="uid://e6pmn7cfk5hw" path="res://Assets/Art/NPRDark.png" id="1_p13th"]
+
+[node name="UI_Box" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1256.0
+offset_bottom = -710.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p13th")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
