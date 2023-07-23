@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmbwi8dupgp5c"]
+[gd_scene load_steps=6 format=3 uid="uid://cmbwi8dupgp5c"]
 
 [ext_resource type="Texture2D" uid="uid://q21dyhdwk864" path="res://Assets/Art/SnakeExpressssIllustration.png" id="1_hf5sm"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_i44qf"]
 [ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="1_pney5"]
 [ext_resource type="Texture2D" uid="uid://mm75oxq6keqy" path="res://Assets/Art/SE-Title.png" id="3_t364v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2562"]
+font_color = Color(1, 1, 0.486275, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -42,6 +47,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "PLAY"
+
+[node name="Spacer" type="Control" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Level Select:"
+label_settings = SubResource("LabelSettings_n2562")
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2/VBoxContainer"]
 z_index = 1

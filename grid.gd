@@ -1,10 +1,11 @@
 class_name Grid
 extends TileMap
 
+@export var infinite_level: bool = false
+
 @onready var train: Train = $Train
 @onready var stations: Node2D = $Stations
 @onready var items: Node2D = $Items
-
 
 enum OBJECT_TYPES {
 	Ground = 0,
@@ -85,11 +86,14 @@ func update_train_head() -> void:
 
 
 func check_level_won() -> void:
+	if infinite_level:
+		return
+		
 	if train.get_passenger_count() != 0:
 		return
 	
 	for station in stations.get_children():
 		if station.passenger_count != 0:
 			return
-			
+	
 	SceneSignalBus.next_level()

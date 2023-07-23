@@ -43,11 +43,6 @@ func _ready():
 	tail.current_cell = (tail.global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		add_wagon()
-
-
 func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input_vector != Vector2.ZERO:

@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsr3jvnqih2fr"]
+[gd_scene load_steps=10 format=3 uid="uid://bsr3jvnqih2fr"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_4u5sb"]
 [ext_resource type="Script" path="res://pause_layer.gd" id="2_6is37"]
 [ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="3_1sihg"]
 [ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="3_hhwlq"]
 [ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="4_oqcix"]
+[ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="6_q68gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk0w"]
 bg_color = Color(0, 0, 0, 0.462745)
 
 [sub_resource type="LabelSettings" id="LabelSettings_igdc2"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_cawun"]
+font = ExtResource("6_q68gb")
+font_color = Color(1, 1, 1, 0.807843)
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_4u5sb")
@@ -64,6 +69,22 @@ size_flags_horizontal = 4
 theme = ExtResource("3_1sihg")
 text = "Main Menu"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -197.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "Pause: ESC / P"
+label_settings = SubResource("LabelSettings_cawun")
+
+[connection signal="paused" from="PauseLayer" to="." method="_on_pause_layer_paused"]
 [connection signal="pressed" from="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 
 [editable path="PauseLayer/MarginContainer/VBoxContainer/KeyRebind"]

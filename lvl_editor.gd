@@ -139,7 +139,7 @@ func place_tile(cell: Vector2i, tile_id: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_pressed() && event is InputEventMouseButton:
-		var cell = Vector2i((get_viewport().get_mouse_position() + container.global_canvas_transform.origin) / Global.TILE_SIZE / 2.0)
+		var cell = Vector2i((get_viewport().get_mouse_position() / (Global.TILE_SIZE * 2.0)) - (container.global_canvas_transform.origin / Global.TILE_SIZE))
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			place_object(cell)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:

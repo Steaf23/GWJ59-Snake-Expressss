@@ -71,3 +71,10 @@ func _on_main_menu_pressed() -> void:
 	SoundManager.play_sfx(Sounds.MENU_CONFIRM)
 	switch("res://main_menu.tscn")
 	pause_layer.unpause()
+
+
+func _on_pause_layer_paused(is_paused) -> void:
+	if is_paused:
+		$CanvasLayer/Label.text = "Unpause: ESC / P"
+	else:
+		$CanvasLayer/Label.text = "Pause: ESC / P"
