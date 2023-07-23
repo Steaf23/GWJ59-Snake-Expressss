@@ -217,12 +217,9 @@ func pickup_item(item: Item) -> void:
 	end_bite()
 	item_picked_up.emit()
 	
-	var head_tween = create_tween()
-	head_tween.tween_property(head, "global_position", head.global_position + (Vector2(current_direction) * Vector2(24.0, 24.0)), base_movement_time / 2.0)
-	
 	var head_tween2 = create_tween()
-	head_tween2.tween_property(head, "scale", Vector2(1.2, 1.2), base_movement_time / 2.0)
-	head_tween2.tween_property(head, "scale", Vector2(1.0, 1.0), base_movement_time / 2.0)
+	head_tween2.tween_property(head.get_node("Sprite"), "scale", Vector2(1.2, 1.2), base_movement_time / 2.0)
+	head_tween2.tween_property(head.get_node("Sprite"), "scale", Vector2(1.0, 1.0), base_movement_time / 2.0)
 	
 	
 	await get_tree().create_timer(base_movement_time / 2.0).timeout
