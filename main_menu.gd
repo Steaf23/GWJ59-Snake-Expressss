@@ -4,7 +4,7 @@ extends Control
 
 func _ready() -> void:
 	%Play.grab_focus()
-	SoundManager.play_music("res://Assets/Audio/background ambience.wav")
+	SoundManager.play_music("res://Assets/Audio/background ambience.ogg")
 	
 	var lvl_counter = 0
 	for file in DirAccess.get_files_at("res://Levels"):
