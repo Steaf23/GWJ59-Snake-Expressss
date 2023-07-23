@@ -98,6 +98,8 @@ func move(precondition: Callable):
 		if wagon is TrainWagon and wagon.current_cell == target_cell:
 			if has_portal:
 				has_portal = false
+				SoundManager.play_sfx(Sounds.GHOST)
+				SoundManager.play_sfx(Sounds.BOOST)
 				continue
 				
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
@@ -265,6 +267,7 @@ func _on_sound_timer_timeout() -> void:
 
 
 func start_boost() -> void:
+	SoundManager.play_sfx(Sounds.BOOST)
 	boost_left = boost_size
 	old_boost_left = boost_size
 	$MovementTimer.stop()
