@@ -65,8 +65,6 @@ type = 3
 position = Vector2(32, 192)
 type = 2
 
-[connection signal="move_timer_timeout" from="Grid/Train" to="Grid" method="_on_train_move_timer_timeout"]
-
 [editable path="Grid/Train"]
 [editable path="Grid/Train/Wagons/Head"]
 [editable path="Grid/Train/Wagons/Head/BoundCamera2D"]

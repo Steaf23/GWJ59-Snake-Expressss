@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ctd6fvncsmxrq"]
+
+[ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="1_7v0u5"]
+
+[resource]
+default_font = ExtResource("1_7v0u5")
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 0.486275, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 2

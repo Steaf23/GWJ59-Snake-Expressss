@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmbwi8dupgp5c"]
+[gd_scene load_steps=5 format=3 uid="uid://cmbwi8dupgp5c"]
 
 [ext_resource type="Texture2D" uid="uid://q21dyhdwk864" path="res://Assets/Art/SnakeExpressssIllustration.png" id="1_hf5sm"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_i44qf"]
+[ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="1_pney5"]
 [ext_resource type="Texture2D" uid="uid://mm75oxq6keqy" path="res://Assets/Art/SE-Title.png" id="3_t364v"]
 
 [node name="MainMenu" type="Control"]
@@ -11,56 +12,79 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pney5")
 script = ExtResource("1_i44qf")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -613.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="BG" type="TextureRect" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
-texture = ExtResource("1_hf5sm")
-stretch_mode = 2
+theme_override_constants/separation = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_left = 326.0
-offset_top = 216.0
-offset_right = 953.0
-offset_bottom = 503.0
-theme_override_constants/margin_top = -300
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Title" type="TextureRect" parent="MarginContainer/CenterContainer"]
+[node name="Title" type="TextureRect" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_t364v")
 stretch_mode = 2
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 494.0
-offset_top = 487.0
-offset_right = 780.0
-offset_bottom = 620.0
+[node name="Play" type="Button" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
 text = "PLAY"
 
-[node name="ItemList" type="ItemList" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
-auto_height = true
-max_columns = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 3
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Levels" type="HFlowContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -865.0
+offset_top = -341.0
+offset_bottom = 341.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BG" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_hf5sm")
+stretch_mode = 2
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Play" to="." method="_on_button_pressed"]

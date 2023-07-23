@@ -1,8 +1,9 @@
 extends Control
 
+@onready var BUTTON = preload("res://level_button.tscn")
 
 func _ready() -> void:
-	$Button.grab_focus()
+	%Play.grab_focus()
 	SoundManager.play_music("res://Assets/Audio/background ambience.wav")
 	
 	var lvl_counter = 0
@@ -11,12 +12,15 @@ func _ready() -> void:
 			return
 		
 		lvl_counter += 1
-		$ItemList.add_item(str(lvl_counter))
+		var btn = BUTTON.instantiate()
+		btn.text = str(lvl_counter)
+		btn.pressed.connect(_on_lvl_button_pressed.bind(lvl_counter))
+		%Levels.add_child(btn)
 
 
 func _on_button_pressed() -> void:
 	SceneSignalBus.reload_level()
 
 
-func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
-	SceneSignalBus.load_level(index)
+func _on_lvl_button_pressed(level: int) -> void:
+	SceneSignalBus.load_level(level - 1)

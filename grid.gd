@@ -12,6 +12,7 @@ enum OBJECT_TYPES {
 	PASSENGER_PICKUP = 2,
 }
 
+
 func _ready() -> void:
 	if train != null:
 		train.move_timer_timeout.connect(_on_train_move_timer_timeout)

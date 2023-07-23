@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsr3jvnqih2fr"]
+[gd_scene load_steps=8 format=3 uid="uid://bsr3jvnqih2fr"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_4u5sb"]
 [ext_resource type="Script" path="res://pause_layer.gd" id="2_6is37"]
+[ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="3_1sihg"]
 [ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="3_hhwlq"]
 [ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="4_oqcix"]
 
@@ -36,6 +37,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PauseLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_1sihg")
 text = "Game Paused"
 label_settings = SubResource("LabelSettings_igdc2")
 horizontal_alignment = 1
@@ -59,6 +61,7 @@ theme_override_constants/margin_bottom = 20
 [node name="MainMenu" type="Button" parent="PauseLayer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("3_1sihg")
 text = "Main Menu"
 
 [connection signal="pressed" from="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" to="." method="_on_main_menu_pressed"]
