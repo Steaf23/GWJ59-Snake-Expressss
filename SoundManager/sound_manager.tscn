@@ -1,15 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq3koyw3pjovp"]
+[gd_scene load_steps=3 format=3 uid="uid://cq3koyw3pjovp"]
 
 [ext_resource type="Script" path="res://SoundManager/sound_manager.gd" id="1_l502s"]
+[ext_resource type="AudioStream" uid="uid://dkefpwwnv00pr" path="res://Assets/Audio/Percussion track-1.ogg" id="2_ol3qw"]
 
 [node name="sound_manager" type="Node"]
 process_mode = 3
 script = ExtResource("1_l502s")
 
-[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="Drums" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ol3qw")
 bus = &"Music"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
 [node name="SFXPool" type="Node" parent="."]
+
+[node name="DrumTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DrumTimer" to="." method="_on_drum_timer_timeout"]

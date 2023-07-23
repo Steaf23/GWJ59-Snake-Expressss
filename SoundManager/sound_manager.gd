@@ -7,6 +7,9 @@ extends Node
 
 var player_counter = 0
 
+@export var time_between_drums_min = 12
+@export var time_between_drums_max = 25
+
 
 func _enter_tree():
 	AudioServer.set_bus_layout(load("res://SoundManager/bus_layout.tres"))
@@ -30,6 +33,8 @@ func play_music(path: String) -> void:
 		
 	music_player.stream = load(path)
 	music_player.play()	
+	_on_drum_timer_timeout()
+	
 
 
 func stop_music() -> void:
@@ -94,3 +99,9 @@ func _get_oldest_player() -> AudioStreamPlayer:
 
 func _on_player_finished(player: AudioStreamPlayer) -> void:
 	player.queue_free()
+
+
+func _on_drum_timer_timeout() -> void:
+	$Drums.play()
+	$DrumTimer.wait_time = (randf() * (time_between_drums_max - time_between_drums_min)) + time_between_drums_min + $Drums.stream.get_length()
+	$DrumTimer.start()
