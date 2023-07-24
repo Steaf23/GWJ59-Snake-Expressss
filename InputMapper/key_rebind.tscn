@@ -46,10 +46,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Done"
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15

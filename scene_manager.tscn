@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsr3jvnqih2fr"]
+[gd_scene load_steps=12 format=3 uid="uid://bsr3jvnqih2fr"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_4u5sb"]
 [ext_resource type="Script" path="res://pause_layer.gd" id="2_6is37"]
@@ -13,6 +13,8 @@ bg_color = Color(0, 0, 0, 0.462745)
 
 [sub_resource type="LabelSettings" id="LabelSettings_igdc2"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_8tjo2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cawun"]
 font = ExtResource("6_q68gb")
@@ -52,10 +54,23 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="RebindLabel" parent="PauseLayer/MarginContainer/VBoxContainer/KeyRebind/VBoxContainer" index="0"]
+label_settings = SubResource("LabelSettings_8tjo2")
+
 [node name="DoneButton" parent="PauseLayer/MarginContainer/VBoxContainer/KeyRebind/VBoxContainer" index="2"]
 visible = false
 
-[node name="VolumeSettings" parent="PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("4_oqcix")]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeSettings" parent="PauseLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_oqcix")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="PauseLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -89,7 +104,7 @@ offset_top = 6.0
 offset_right = -6.0
 offset_bottom = 32.0
 grow_horizontal = 0
-text = "Pause: ESC / P"
+text = "Pause: ESC or P"
 label_settings = SubResource("LabelSettings_cawun")
 
 [connection signal="paused" from="PauseLayer" to="." method="_on_pause_layer_paused"]

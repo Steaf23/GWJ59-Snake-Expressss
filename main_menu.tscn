@@ -56,10 +56,6 @@ layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="Spacer" type="Control" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Level Select:"
@@ -80,12 +76,15 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Levels" type="HFlowContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Levels" type="GridContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1
+columns = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2

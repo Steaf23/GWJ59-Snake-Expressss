@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cckuu2umb1jdq"]
+[gd_scene load_steps=8 format=3 uid="uid://br3hx55cb5uj5"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_xov68"]
 [ext_resource type="Script" path="res://grid.gd" id="2_rsxev"]

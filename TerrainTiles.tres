@@ -1,9 +1,11 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://qvpbxfxmduuc"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://qvpbxfxmduuc"]
 
 [ext_resource type="Texture2D" uid="uid://duu8qceldeudx" path="res://Assets/Art/BushesPacked.png" id="1_v0e6f"]
 [ext_resource type="Texture2D" uid="uid://doniste0bwuev" path="res://Assets/Art/tileset.png" id="2_1bp4s"]
 [ext_resource type="Texture2D" uid="uid://bydxsigyn2nim" path="res://Assets/Art/DirtPacked.png" id="2_3okbb"]
 [ext_resource type="Texture2D" uid="uid://cx84v6dyo42jw" path="res://Assets/Art/SwampWater.png" id="3_54o66"]
+[ext_resource type="Texture2D" uid="uid://b8iswoatjwnvb" path="res://Assets/Art/DirtCorners.png" id="5_6d8my"]
+[ext_resource type="Texture2D" uid="uid://bnubdrxgj82pv" path="res://Assets/Art/SwampStone4.png" id="6_h0ar1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i85nu"]
 texture = ExtResource("1_v0e6f")
@@ -327,6 +329,12 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/terrains_peering_bit/top_side = 2
 3:2/0/custom_data_0 = 1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpspv"]
+texture = ExtResource("6_h0ar1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_imnon"]
 texture = ExtResource("2_1bp4s")
 texture_region_size = Vector2i(32, 32)
@@ -364,6 +372,30 @@ texture_region_size = Vector2i(32, 32)
 0:0/animation_frame_3/duration = 0.4
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rik2y"]
+texture = ExtResource("5_6d8my")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+0:0/0/terrains_peering_bit/right_side = 2
+0:0/0/terrains_peering_bit/bottom_side = 2
+0:0/0/terrains_peering_bit/bottom_left_corner = 2
+0:0/0/terrains_peering_bit/left_side = 2
+0:0/0/terrains_peering_bit/top_left_corner = 2
+0:0/0/terrains_peering_bit/top_side = 2
+0:0/0/terrains_peering_bit/top_right_corner = 2
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 2
+1:0/0/terrains_peering_bit/right_side = 2
+1:0/0/terrains_peering_bit/bottom_right_corner = 2
+1:0/0/terrains_peering_bit/bottom_side = 2
+1:0/0/terrains_peering_bit/left_side = 2
+1:0/0/terrains_peering_bit/top_left_corner = 2
+1:0/0/terrains_peering_bit/top_side = 2
+1:0/0/terrains_peering_bit/top_right_corner = 2
+
 [resource]
 tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
@@ -381,3 +413,5 @@ sources/3 = SubResource("TileSetAtlasSource_vhb0b")
 sources/2 = SubResource("TileSetAtlasSource_imnon")
 sources/0 = SubResource("TileSetAtlasSource_i85nu")
 sources/1 = SubResource("TileSetAtlasSource_k6tc7")
+sources/4 = SubResource("TileSetAtlasSource_rik2y")
+sources/12 = SubResource("TileSetAtlasSource_vpspv")

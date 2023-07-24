@@ -75,6 +75,6 @@ func _on_main_menu_pressed() -> void:
 
 func _on_pause_layer_paused(is_paused) -> void:
 	if is_paused:
-		$CanvasLayer/Label.text = "Unpause: ESC / P"
+		$CanvasLayer/Label.text = "Unpause: ESC or P"
 	else:
-		$CanvasLayer/Label.text = "Pause: ESC / P"
+		$CanvasLayer/Label.text = "Pause: ESC or P"

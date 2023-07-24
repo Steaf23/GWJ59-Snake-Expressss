@@ -9,6 +9,7 @@ enum ITEM_TYPE {
 	BigGrow,
 	Shrink,
 	Portal,
+	Frog,
 }
 
 @export var type: ITEM_TYPE:
@@ -27,6 +28,8 @@ enum ITEM_TYPE {
 				texture = "res://Assets/Art/ShrinkFruit.png"
 			ITEM_TYPE.Portal:
 				texture = "res://Assets/Art/GhostFruit.png"
+			ITEM_TYPE.Frog:
+				texture = "res://Assets/Art/GoldenFrog.png"
 		
 		if $Sprite2D == null:
 			await ready

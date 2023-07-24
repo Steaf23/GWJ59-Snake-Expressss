@@ -3,6 +3,7 @@ extends Node2D
 
 signal move_timer_timeout()
 signal item_picked_up()
+signal frogged()
 
 @export var base_movement_time: float = 0.22
 
@@ -208,6 +209,8 @@ func pickup_item(item: Item) -> void:
 			add_wagon()
 			boost_left = boost_size
 			start_boost()
+		Item.ITEM_TYPE.Frog:
+			frogged.emit()
 			
 	if powerup:
 		SoundManager.play_random_sfx([Sounds.POWERUP_1, Sounds.POWERUP_2])

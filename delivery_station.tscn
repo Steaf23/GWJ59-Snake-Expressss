@@ -46,11 +46,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_6ebln"]
+[sub_resource type="LabelSettings" id="LabelSettings_75huf"]
+resource_local_to_scene = true
 font = ExtResource("4_ch0qn")
 font_color = Color(0.686275, 1, 0.486275, 1)
 outline_size = 2
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(1, 1, 0.486275, 1)
 
 [node name="DeliveryStation" type="Node2D"]
 z_index = 1
@@ -80,6 +81,6 @@ offset_right = 38.0
 offset_bottom = 32.0
 grow_horizontal = 2
 text = "2"
-label_settings = SubResource("LabelSettings_6ebln")
+label_settings = SubResource("LabelSettings_75huf")
 horizontal_alignment = 1
 vertical_alignment = 2

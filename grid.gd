@@ -1,6 +1,8 @@
 class_name Grid
 extends TileMap
 
+const GOLD_ROCK = 12
+
 @export var infinite_level: bool = false
 
 @onready var train: Train = $Train
@@ -17,6 +19,8 @@ enum OBJECT_TYPES {
 func _ready() -> void:
 	if train != null:
 		train.move_timer_timeout.connect(_on_train_move_timer_timeout)
+		
+	train.frogged.connect(_on_train_frogged)
 
 
 func _on_train_move_timer_timeout() -> void:
@@ -98,3 +102,8 @@ func check_level_won() -> void:
 			return
 	
 	SceneSignalBus.next_level()
+
+
+func _on_train_frogged() -> void:
+	for cell in get_used_cells_by_id(1, GOLD_ROCK):
+		set_cell(1, cell)

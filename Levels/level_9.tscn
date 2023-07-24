@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyqlyl7iuex1s"]
+[gd_scene load_steps=13 format=3 uid="uid://cw8equqi1ok6o"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_cyym7"]
 [ext_resource type="Script" path="res://grid.gd" id="2_qdmso"]
@@ -123,7 +123,7 @@ libraries = {
 position = Vector2(160, -32)
 limit_left = 0
 limit_top = 0
-limit_right = 640
+limit_right = 1472
 limit_bottom = 352
 
 [node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]

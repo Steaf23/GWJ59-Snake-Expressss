@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgu7nh8l6wxa2"]
+[gd_scene load_steps=8 format=3 uid="uid://cgu7nh8l6wxa2"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_o6ey8"]
 [ext_resource type="Script" path="res://grid.gd" id="2_431wl"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="5_0lq0s"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="8_m8ds1"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="10_d4yjv"]
+
+[sub_resource type="Gradient" id="Gradient_6yxjo"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0.00613497, 0.319018, 0.650307, 1)
+colors = PackedColorArray(0.431264, 0.113963, 0.246789, 1, 1, 0.32, 0.331333, 1, 0.85, 0.5593, 0.3655, 1, 0.686275, 1, 0.486275, 1)
 
 [node name="_Node2D_5" type="Node2D"]
 y_sort_enabled = true
@@ -30,6 +35,7 @@ y_sort_enabled = true
 [node name="@Node2D@13" parent="Grid/Stations" instance=ExtResource("3_nbtmx")]
 position = Vector2(544, 64)
 starting_count = 14
+number_gradient = SubResource("Gradient_6yxjo")
 
 [node name="Station" parent="Grid/Stations" instance=ExtResource("5_0lq0s")]
 position = Vector2(544, 256)
