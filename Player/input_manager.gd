@@ -11,7 +11,6 @@ var queued_input: Vector2i:
 	set(value):
 		queued_input = value
 	get:
-#		print(get_path(), "get_input: ", queued_input)
 		return queued_input
 
 func _input(event: InputEvent) -> void:

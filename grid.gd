@@ -21,6 +21,12 @@ func _ready() -> void:
 		train.move_timer_timeout.connect(_on_train_move_timer_timeout)
 		
 	train.frogged.connect(_on_train_frogged)
+	
+	# draw grid
+	for cell in get_used_cells(0):
+		if cell.x % 2 != cell.y % 2:
+			set_cell(1, cell, 5, Vector2i())
+			
 
 
 func _on_train_move_timer_timeout() -> void:
@@ -33,7 +39,7 @@ func _on_train_move_timer_timeout() -> void:
 	
 	
 func can_traverse(grid_object: Node2D, cell: Vector2i) -> bool:
-	var tile_data = get_cell_tile_data(OBJECT_TYPES.Wall, cell)
+	var tile_data = get_cell_tile_data(2, cell)
 	
 	for station in stations.get_children():
 		if station.current_cell == cell:
@@ -105,5 +111,5 @@ func check_level_won() -> void:
 
 
 func _on_train_frogged() -> void:
-	for cell in get_used_cells_by_id(1, GOLD_ROCK):
-		set_cell(1, cell)
+	for cell in get_used_cells_by_id(2, GOLD_ROCK):
+		set_cell(2, cell)

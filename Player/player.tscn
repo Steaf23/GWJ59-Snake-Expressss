@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_57cm0"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Player/train_wagon.tscn" id="2_pcmd7"]
-[ext_resource type="Texture2D" uid="uid://brja8a8d2c1vy" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_38y3x"]
-[ext_resource type="Texture2D" uid="uid://tjrgn6sb6nsx" path="res://Assets/Art/snake_normal.png" id="4_ja8eq"]
+[ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_38y3x"]
+[ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="4_ja8eq"]
 [ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_hlft0"]
-[ext_resource type="Texture2D" uid="uid://dytvctiebqjli" path="res://Assets/Art/SnakeTrain_Tail.png" id="6_xsqd8"]
-[ext_resource type="Texture2D" uid="uid://p402isn11ko" path="res://Assets/Art/BoostBarBG.png" id="7_qr7ft"]
-[ext_resource type="Texture2D" uid="uid://bksp142tua0ji" path="res://Assets/Art/BoostBar.png" id="8_ls7ly"]
-[ext_resource type="Texture2D" uid="uid://cicsyovieieqv" path="res://Assets/Art/BoostBarFill.png" id="9_hwl7o"]
+[ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="6_xsqd8"]
+[ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_qr7ft"]
+[ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="8_ls7ly"]
+[ext_resource type="Texture2D" uid="uid://dhae1rlskn076" path="res://Assets/Art/BoostBarFill.png" id="9_hwl7o"]
 [ext_resource type="Script" path="res://Player/input_manager.gd" id="10_rsc34"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nrepr"]
@@ -104,6 +104,9 @@ boost_multiplier = 0.75
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("10_rsc34")
 
+[node name="MinMoveTime" type="Timer" parent="."]
+process_callback = 0
+
 [node name="MovementTimer" type="Timer" parent="."]
 process_callback = 0
 
@@ -189,6 +192,7 @@ texture_progress = ExtResource("9_hwl7o")
 
 [connection signal="input_direction_changed" from="InputManager" to="." method="_on_input_manager_input_direction_changed"]
 [connection signal="output_direction_changed" from="InputManager" to="." method="_on_input_manager_output_direction_changed"]
+[connection signal="timeout" from="MinMoveTime" to="." method="_on_min_move_time_timeout"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="animation_finished" from="Wagons/Head/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]

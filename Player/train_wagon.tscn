@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2722l1rurupt"]
 
 [ext_resource type="Script" path="res://Player/train_wagon.gd" id="1_o7jmh"]
-[ext_resource type="Texture2D" uid="uid://f51jo26mjlg0" path="res://Assets/Art/SnakeTrain_Wagon.png" id="2_m5c5o"]
-[ext_resource type="Texture2D" uid="uid://402pxfm5h3sx" path="res://Assets/Art/NewtWagonGray.png" id="3_uxbmo"]
+[ext_resource type="Texture2D" uid="uid://drkjlmhxl81q7" path="res://Assets/Art/SnakeTrain_Wagon.png" id="2_m5c5o"]
+[ext_resource type="Texture2D" uid="uid://cmne5ugcrnxql" path="res://Assets/Art/NewtWagonGray.png" id="3_uxbmo"]
 
 [node name="TrainSection" type="Area2D" groups=["grid_object"]]
 script = ExtResource("1_o7jmh")

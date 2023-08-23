@@ -33,13 +33,7 @@ var sound_time_max = 10
 var sound_time_min = 7
 
 var start_level = false
-var first_move = true:
-	set(value):
-		first_move = value
-		print($MovementTimer.get_path())
-	get:
-		print($MovementTimer.get_path())
-		return first_move
+var first_move = true
 
 var can_turn: bool = false
 
@@ -83,8 +77,9 @@ func move_force(precondition: Callable):
 		SceneSignalBus.reload_level()
 		return
 		
+	# current cell is already updated
 	for wagon in wagons.get_children():
-		if wagon is TrainWagon and wagon.current_cell == current_cell:
+		if wagon is TrainWagon and wagon.current_cell == current_cell and wagon.current_cell != head.current_cell:
 			if has_portal:
 				has_portal = false
 				SoundManager.play_sfx(Sounds.GHOST)
@@ -103,6 +98,8 @@ func move_force(precondition: Callable):
 		end_boost()
 	
 	queue_redraw()
+	$MinMoveTime.start($MovementTimer.wait_time * 0.75)
+	
 	
 
 func move_early() -> void:
@@ -353,6 +350,12 @@ func _on_input_manager_input_direction_changed() -> void:
 		move_timer_timeout.emit()
 	queue_redraw()
 	
+	move_early()
+	
 
 func _on_input_manager_output_direction_changed() -> void:
 	SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
+
+
+func _on_min_move_time_timeout() -> void:
+	can_turn = true

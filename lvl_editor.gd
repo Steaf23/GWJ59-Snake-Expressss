@@ -5,7 +5,7 @@ extends Node
 @onready var ITEM = preload("res://item.tscn")
 @onready var PICKUP = preload("res://station.tscn")
 @onready var DELIVERY = preload("res://delivery_station.tscn")
-@onready var SNAKE = preload("res://train.tscn")
+@onready var SNAKE = preload("res://Player/player.tscn")
 @onready var SNAKE_FAKE = preload("res://editor_snake.tscn")
 
 var selected_idx: int = 0
