@@ -1,19 +1,19 @@
 [gd_scene load_steps=19 format=3 uid="uid://b76ikgus0leci"]
 
-[ext_resource type="Script" path="res://train.gd" id="1_3y54e"]
-[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://train_wagon.tscn" id="2_55dmj"]
-[ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
-[ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
-[ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_164jo"]
-[ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="5_dlki4"]
-[ext_resource type="Script" path="res://powerup_helper.gd" id="6_dnjwl"]
-[ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_j46re"]
-[ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="7_rd5s4"]
-[ext_resource type="Texture2D" uid="uid://dhae1rlskn076" path="res://Assets/Art/BoostBarFill.png" id="9_ci13t"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_57cm0"]
+[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Player/train_wagon.tscn" id="2_pcmd7"]
+[ext_resource type="Texture2D" uid="uid://brja8a8d2c1vy" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_38y3x"]
+[ext_resource type="Texture2D" uid="uid://tjrgn6sb6nsx" path="res://Assets/Art/snake_normal.png" id="4_ja8eq"]
+[ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_hlft0"]
+[ext_resource type="Texture2D" uid="uid://dytvctiebqjli" path="res://Assets/Art/SnakeTrain_Tail.png" id="6_xsqd8"]
+[ext_resource type="Texture2D" uid="uid://p402isn11ko" path="res://Assets/Art/BoostBarBG.png" id="7_qr7ft"]
+[ext_resource type="Texture2D" uid="uid://bksp142tua0ji" path="res://Assets/Art/BoostBar.png" id="8_ls7ly"]
+[ext_resource type="Texture2D" uid="uid://cicsyovieieqv" path="res://Assets/Art/BoostBarFill.png" id="9_hwl7o"]
+[ext_resource type="Script" path="res://Player/input_manager.gd" id="10_rsc34"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_vula4"]
-diffuse_texture = ExtResource("3_j8u8j")
-normal_texture = ExtResource("5_dlki4")
+[sub_resource type="CanvasTexture" id="CanvasTexture_nrepr"]
+diffuse_texture = ExtResource("3_38y3x")
+normal_texture = ExtResource("4_ja8eq")
 
 [sub_resource type="Animation" id="Animation_p58ls"]
 length = 0.001
@@ -96,25 +96,26 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
-[node name="Train" type="Node2D"]
-script = ExtResource("1_3y54e")
+[node name="Player" type="Node2D"]
+script = ExtResource("1_57cm0")
+base_movement_time = 0.3
 boost_multiplier = 0.75
 
-[node name="PowerupHelper" type="Node" parent="."]
-script = ExtResource("6_dnjwl")
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("10_rsc34")
 
 [node name="MovementTimer" type="Timer" parent="."]
 process_callback = 0
 
 [node name="Wagons" type="Node2D" parent="."]
 
-[node name="Head" parent="Wagons" instance=ExtResource("2_55dmj")]
+[node name="Head" parent="Wagons" instance=ExtResource("2_pcmd7")]
 unique_name_in_owner = true
 z_index = 1
 can_have_passenger = false
 
 [node name="Sprite" parent="Wagons/Head" index="0"]
-texture = SubResource("CanvasTexture_vula4")
+texture = SubResource("CanvasTexture_nrepr")
 hframes = 3
 vframes = 2
 
@@ -123,7 +124,7 @@ libraries = {
 "": SubResource("AnimationLibrary_sdtcy")
 }
 
-[node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_164jo")]
+[node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_hlft0")]
 limit_left = -384
 limit_top = -160
 limit_right = 704
@@ -153,13 +154,13 @@ color = Color(1, 1, 0.486275, 1)
 energy = 0.85
 texture = SubResource("GradientTexture2D_ma0bw")
 
-[node name="Tail" parent="Wagons" instance=ExtResource("2_55dmj")]
+[node name="Tail" parent="Wagons" instance=ExtResource("2_pcmd7")]
 unique_name_in_owner = true
 position = Vector2(0, -32)
 can_have_passenger = false
 
 [node name="Sprite" parent="Wagons/Tail" index="0"]
-texture = ExtResource("4_kcxdi")
+texture = ExtResource("6_xsqd8")
 
 [node name="SoundTimer" type="Timer" parent="."]
 one_shot = true
@@ -182,10 +183,12 @@ grow_vertical = 0
 [node name="BoostBar" type="TextureProgressBar" parent="HUDLayer/MarginContainer"]
 visible = false
 layout_mode = 2
-texture_under = ExtResource("7_j46re")
-texture_over = ExtResource("7_rd5s4")
-texture_progress = ExtResource("9_ci13t")
+texture_under = ExtResource("7_qr7ft")
+texture_over = ExtResource("8_ls7ly")
+texture_progress = ExtResource("9_hwl7o")
 
+[connection signal="input_direction_changed" from="InputManager" to="." method="_on_input_manager_input_direction_changed"]
+[connection signal="output_direction_changed" from="InputManager" to="." method="_on_input_manager_output_direction_changed"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="animation_finished" from="Wagons/Head/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]

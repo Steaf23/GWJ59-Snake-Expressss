@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_gwo76"]
 [ext_resource type="Script" path="res://grid.gd" id="2_6su0q"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="3_2uhh1"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://player.tscn" id="3_2uhh1"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_hr3p0"]
 
 [node name="Test Level" type="Node2D"]

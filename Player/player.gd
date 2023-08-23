@@ -16,26 +16,32 @@ var has_portal = false
 var boost_left: int = 0
 var old_boost_left: int = 0
 
-@onready var TRAIN_WAGON = preload("res://train_wagon.tscn")
+@onready var TRAIN_WAGON_SCN = preload("res://player/train_wagon.tscn")
 @onready var wagons = $Wagons
 @onready var head: TrainWagon = %Head
 @onready var tail: TrainWagon = %Tail
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 @onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
+@onready var input_manager: InputManager = $InputManager
 
-var current_direction : Vector2i = Vector2i.DOWN
 var wagon_queue: int = 0
 var insert_new_wagon: bool = false
 var current_cell: Vector2i
 var freeze_tail = false
 
-var queued_input = Vector2()
-
 var sound_time_max = 10
 var sound_time_min = 7
 
 var start_level = false
-var first_move = true
+var first_move = true:
+	set(value):
+		first_move = value
+		print($MovementTimer.get_path())
+	get:
+		print($MovementTimer.get_path())
+		return first_move
+
+var can_turn: bool = false
 
 func _ready():
 	boost_bar.max_value = boost_size
@@ -46,20 +52,12 @@ func _ready():
 	
 	await get_tree().create_timer(0.5).timeout
 	start_level = true
+	can_turn = true
 
 
 func _physics_process(delta: float) -> void:
 	if not start_level:
 		return
-		
-	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if input_vector != Vector2.ZERO:
-		if first_move:
-			first_move = false
-			$MovementTimer.start(base_movement_time)
-			move_timer_timeout.emit()
-		queued_input = input_vector
-		queue_redraw()
 		
 	boost_bar.visible = old_boost_left > 0
 	boost_bar.value = old_boost_left
@@ -76,28 +74,17 @@ func _on_movement_timer_timeout() -> void:
 	move_timer_timeout.emit()
 
 
-func move(precondition: Callable):
-	var prev_direction = current_direction
-	
-	var input = queued_input
-	match (current_direction):
-		Vector2i.LEFT, Vector2i.RIGHT:
-			if not is_equal_approx(input.y, 0.0):
-				current_direction = Vector2(0, sign(input.y))
-		Vector2i.DOWN, Vector2i.UP:
-			if not is_equal_approx(input.x, 0.0):
-				current_direction = Vector2(sign(input.x), 0)
-	
-	var target_cell = current_cell + current_direction
-	queued_input = Vector2.ZERO
-	
-	if not precondition.call(self, target_cell):
+func move_force(precondition: Callable):	
+	if can_turn:
+		move_early()
+
+	if not precondition.call(self, current_cell):
 		SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
 		SceneSignalBus.reload_level()
 		return
 		
 	for wagon in wagons.get_children():
-		if wagon is TrainWagon and wagon.current_cell == target_cell:
+		if wagon is TrainWagon and wagon.current_cell == current_cell:
 			if has_portal:
 				has_portal = false
 				SoundManager.play_sfx(Sounds.GHOST)
@@ -107,12 +94,6 @@ func move(precondition: Callable):
 			SoundManager.play_random_sfx([Sounds.CRASH_1, Sounds.CRASH_2, Sounds.CRASH_3])
 			SceneSignalBus.reload_level()
 			return
-	
-	if prev_direction != current_direction:
-		SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
-		
-	current_cell = target_cell
-	update_wagons($MovementTimer.wait_time)
 		
 	if boost_left > 0:
 		old_boost_left = boost_left
@@ -122,9 +103,24 @@ func move(precondition: Callable):
 		end_boost()
 	
 	queue_redraw()
+	
+
+func move_early() -> void:
+	if not can_turn:
+		return
+		
+	input_manager.update_current_direction()
+	var direction = input_manager.current_direction
+	current_cell += direction
+	
+	update_wagons($MovementTimer.wait_time)
+	
+	can_turn = false
 
 
 func _draw() -> void:
+	var current_direction =  input_manager.current_direction
+	var queued_input = input_manager.queued_input
 	var tile_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
 	var ahead = current_direction
 	var left = Vector2(current_direction).rotated(-PI/2)
@@ -139,26 +135,26 @@ func _draw() -> void:
 			if not is_equal_approx(queued_input.x, 0.0):
 				new_dir = Vector2(sign(queued_input.x), 0)
 				
-	print(left, " ", new_dir)
+#	print(left, " ", new_dir)
 	
-	var color = Color(1.0, 1.0, 1.0, 0.3)
-	if is_equal_approx(left.x, new_dir.x) and is_equal_approx(left.y, new_dir.y):
-		color = Color(0.0, 1.0, 0.0, 0.3)
-	else:
-		color = Color(1.0, 1.0, 1.0, 0.3)
-	draw_rect(Rect2i(((Vector2(current_cell) + left) * Global.TILE_SIZE) - global_position, tile_size), color)
-	
-	if is_equal_approx(ahead.x, new_dir.x) and is_equal_approx(ahead.y, new_dir.y):
-		color = Color(0.0, 1.0, 0.0, 0.3)
-	else:
-		color = Color(1.0, 1.0, 1.0, 0.3)
-	draw_rect(Rect2i(((current_cell + ahead) * Global.TILE_SIZE) - Vector2i(global_position), tile_size), color)
-	
-	if is_equal_approx(right.x, new_dir.x) and is_equal_approx(right.y, new_dir.y):
-		color = Color(0.0, 1.0, 0.0, 0.3)
-	else:
-		color = Color(1.0, 1.0, 1.0, 0.3)
-	draw_rect(Rect2i(((Vector2(current_cell) + right) * Global.TILE_SIZE) - global_position, tile_size), color)
+#	var color = Color(1.0, 1.0, 1.0, 0.3)
+#	if is_equal_approx(left.x, new_dir.x) and is_equal_approx(left.y, new_dir.y):
+#		color = Color(0.0, 1.0, 0.0, 0.3)
+#	else:
+#		color = Color(1.0, 1.0, 1.0, 0.3)
+#	draw_rect(Rect2i(((Vector2(current_cell) + left) * Global.TILE_SIZE) - global_position, tile_size), color)
+#
+#	if is_equal_approx(ahead.x, new_dir.x) and is_equal_approx(ahead.y, new_dir.y):
+#		color = Color(0.0, 1.0, 0.0, 0.3)
+#	else:
+#		color = Color(1.0, 1.0, 1.0, 0.3)
+#	draw_rect(Rect2i(((current_cell + ahead) * Global.TILE_SIZE) - Vector2i(global_position), tile_size), color)
+#
+#	if is_equal_approx(right.x, new_dir.x) and is_equal_approx(right.y, new_dir.y):
+#		color = Color(0.0, 1.0, 0.0, 0.3)
+#	else:
+#		color = Color(1.0, 1.0, 1.0, 0.3)
+#	draw_rect(Rect2i(((Vector2(current_cell) + right) * Global.TILE_SIZE) - global_position, tile_size), color)
 
 func add_wagon() -> void:
 	wagon_queue += 1
@@ -181,7 +177,7 @@ func update_wagons(tween_speed: float) -> void:
 
 
 func create_wagon() -> void:
-	var wagon = TRAIN_WAGON.instantiate()
+	var wagon = TRAIN_WAGON_SCN.instantiate()
 	wagons.add_child(wagon)
 	wagons.move_child(wagon, 1)
 	var new_wagon_cell = head.current_cell
@@ -348,3 +344,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"bite_end":
 			ending_bite = false
+
+
+func _on_input_manager_input_direction_changed() -> void:
+	if first_move:
+		first_move = false
+		$MovementTimer.start(base_movement_time)
+		move_timer_timeout.emit()
+	queue_redraw()
+	
+
+func _on_input_manager_output_direction_changed() -> void:
+	SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])

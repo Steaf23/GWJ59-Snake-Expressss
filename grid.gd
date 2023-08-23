@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _on_train_move_timer_timeout() -> void:
 	check_level_won()
-	train.move(can_traverse)
+	train.move_force(can_traverse)
 	try_pickup_passenger()
 	try_pickup_item()
 	try_deliver_passenger()

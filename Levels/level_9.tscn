@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_cyym7"]
 [ext_resource type="Script" path="res://grid.gd" id="2_qdmso"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="3_cwadd"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://player.tscn" id="3_cwadd"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_feiw2"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="3_jjqd3"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="6_8i0mw"]

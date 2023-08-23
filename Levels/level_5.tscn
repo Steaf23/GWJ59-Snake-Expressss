@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://grid.gd" id="2_ji3g4"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_a7045"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="4_l5oq6"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="5_p2bsp"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://player.tscn" id="5_p2bsp"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="6_5liwq"]
 
 [sub_resource type="Gradient" id="Gradient_4gysd"]

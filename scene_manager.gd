@@ -78,3 +78,10 @@ func _on_pause_layer_paused(is_paused) -> void:
 		$CanvasLayer/Label.text = "Unpause: ESC or P"
 	else:
 		$CanvasLayer/Label.text = "Pause: ESC or P"
+
+
+func _on_directional_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		Global.input_method = InputManager.InputMethod.DIRECTIONAL
+	else:
+		Global.input_method = InputManager.InputMethod.STEERING

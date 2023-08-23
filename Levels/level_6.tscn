@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="3_nbtmx"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="5_0lq0s"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="8_m8ds1"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="10_d4yjv"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://player.tscn" id="10_d4yjv"]
 
 [sub_resource type="Gradient" id="Gradient_6yxjo"]
 resource_local_to_scene = true

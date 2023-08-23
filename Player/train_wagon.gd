@@ -43,6 +43,6 @@ func move(target_cell: Vector2i, reposition: bool) -> void:
 		pos_tween.stop()
 	
 	pos_tween = create_tween()
-	var tweener = pos_tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed * 1.2)
+	var tweener = pos_tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE) + (new_direction * (Global.TILE_SIZE/3.0)), tween_speed * 1.2)
 	tweener.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT_IN)
 	current_cell = target_cell
