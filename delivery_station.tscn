@@ -51,7 +51,7 @@ resource_local_to_scene = true
 font = ExtResource("4_ch0qn")
 font_color = Color(0.686275, 1, 0.486275, 1)
 outline_size = 2
-outline_color = Color(1, 1, 0.486275, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [node name="DeliveryStation" type="Node2D"]
 z_index = 1

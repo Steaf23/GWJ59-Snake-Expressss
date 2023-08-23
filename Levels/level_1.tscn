@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="8_58rvy"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="10_ca41j"]
 
-[sub_resource type="Gradient" id="Gradient_3rv1o"]
+[sub_resource type="Gradient" id="Gradient_x2ne6"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0.00613497, 0.319018, 0.650307, 1)
 colors = PackedColorArray(0.431264, 0.113963, 0.246789, 1, 1, 0.32, 0.331333, 1, 0.85, 0.5593, 0.3655, 1, 0.686275, 1, 0.486275, 1)
@@ -35,7 +35,7 @@ y_sort_enabled = true
 [node name="DeliveryStation" parent="Grid/Stations" instance=ExtResource("3_gsqk2")]
 position = Vector2(512, 288)
 starting_count = 8
-number_gradient = SubResource("Gradient_3rv1o")
+number_gradient = SubResource("Gradient_x2ne6")
 
 [node name="Station" parent="Grid/Stations" instance=ExtResource("5_w4k4p")]
 position = Vector2(512, 32)

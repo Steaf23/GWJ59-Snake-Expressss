@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			$MovementTimer.start(base_movement_time)
 			move_timer_timeout.emit()
 		queued_input = input_vector
+		queue_redraw()
 		
 	boost_bar.visible = old_boost_left > 0
 	boost_bar.value = old_boost_left
@@ -119,7 +120,45 @@ func move(precondition: Callable):
 	elif boost_left == 0 and old_boost_left > 0:
 		old_boost_left = 0
 		end_boost()
+	
+	queue_redraw()
 
+
+func _draw() -> void:
+	var tile_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
+	var ahead = current_direction
+	var left = Vector2(current_direction).rotated(-PI/2)
+	var right = Vector2(current_direction).rotated(PI/2)
+
+	var new_dir: Vector2
+	match (current_direction):
+		Vector2i.LEFT, Vector2i.RIGHT:
+			if not is_equal_approx(queued_input.y, 0.0):
+				new_dir = Vector2(0, sign(queued_input.y))
+		Vector2i.DOWN, Vector2i.UP:
+			if not is_equal_approx(queued_input.x, 0.0):
+				new_dir = Vector2(sign(queued_input.x), 0)
+				
+	print(left, " ", new_dir)
+	
+	var color = Color(1.0, 1.0, 1.0, 0.3)
+	if is_equal_approx(left.x, new_dir.x) and is_equal_approx(left.y, new_dir.y):
+		color = Color(0.0, 1.0, 0.0, 0.3)
+	else:
+		color = Color(1.0, 1.0, 1.0, 0.3)
+	draw_rect(Rect2i(((Vector2(current_cell) + left) * Global.TILE_SIZE) - global_position, tile_size), color)
+	
+	if is_equal_approx(ahead.x, new_dir.x) and is_equal_approx(ahead.y, new_dir.y):
+		color = Color(0.0, 1.0, 0.0, 0.3)
+	else:
+		color = Color(1.0, 1.0, 1.0, 0.3)
+	draw_rect(Rect2i(((current_cell + ahead) * Global.TILE_SIZE) - Vector2i(global_position), tile_size), color)
+	
+	if is_equal_approx(right.x, new_dir.x) and is_equal_approx(right.y, new_dir.y):
+		color = Color(0.0, 1.0, 0.0, 0.3)
+	else:
+		color = Color(1.0, 1.0, 1.0, 0.3)
+	draw_rect(Rect2i(((Vector2(current_cell) + right) * Global.TILE_SIZE) - global_position, tile_size), color)
 
 func add_wagon() -> void:
 	wagon_queue += 1
