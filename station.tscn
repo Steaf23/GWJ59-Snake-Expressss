@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://djlj1bhvc1kp8"]
 
 [ext_resource type="Texture2D" uid="uid://cnwmmdyhxr0p3" path="res://Assets/Art/Station.png" id="1_4qhth"]
-[ext_resource type="Script" path="res://station.gd" id="1_vaplg"]
+[ext_resource type="Script" uid="uid://dktnoxkp32mqc" path="res://station.gd" id="1_vaplg"]
 [ext_resource type="Resource" uid="uid://rkk1053lsvvn" path="res://Stations/square_station.tres" id="2_ek3jj"]
 [ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="4_axegu"]
 [ext_resource type="Texture2D" uid="uid://hj8atsqwl00j" path="res://Assets/Art/NewtGrey.png" id="5_6tnqr"]
@@ -160,11 +160,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_agc5r"]
 _data = {
-"RESET": SubResource("Animation_o32n2"),
-"jump_down": SubResource("Animation_we3yl"),
-"jump_left": SubResource("Animation_msuhx"),
-"jump_right": SubResource("Animation_jcuc2"),
-"jump_up": SubResource("Animation_rqtu6")
+&"RESET": SubResource("Animation_o32n2"),
+&"jump_down": SubResource("Animation_we3yl"),
+&"jump_left": SubResource("Animation_msuhx"),
+&"jump_right": SubResource("Animation_jcuc2"),
+&"jump_up": SubResource("Animation_rqtu6")
 }
 
 [node name="Station" type="Node2D"]

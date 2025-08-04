@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwj4xfnnfcc7v"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_pdrbj"]
+[ext_resource type="Script" uid="uid://dopopw6fuvx0i" path="res://item.gd" id="1_pdrbj"]
 [ext_resource type="Texture2D" uid="uid://bqrtjf62c20p" path="res://Assets/Art/GrowthFruit.png" id="2_2jqbh"]
 
 [sub_resource type="Animation" id="Animation_4tupp"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rakf"]
 _data = {
-"RESET": SubResource("Animation_4tupp"),
-"idle": SubResource("Animation_x2kug")
+&"RESET": SubResource("Animation_4tupp"),
+&"idle": SubResource("Animation_x2kug")
 }
 
 [node name="Item" type="Node2D"]

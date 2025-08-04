@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://rohxml1uei86"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_pk5pf"]
-[ext_resource type="Script" path="res://grid.gd" id="2_w5afw"]
+[ext_resource type="Script" uid="uid://bb564yfeetkxg" path="res://grid.gd" id="2_w5afw"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_6eh8u"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="4_6qt8h"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://player.tscn" id="5_163ti"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Player/player.tscn" id="5_163ti"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="6_aidtb"]
 
 [sub_resource type="Gradient" id="Gradient_mqar5"]

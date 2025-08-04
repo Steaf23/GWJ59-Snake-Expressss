@@ -39,7 +39,7 @@ func _on_train_move_timer_timeout() -> void:
 	
 	
 func can_traverse(grid_object: Node2D, cell: Vector2i) -> bool:
-	var tile_data = get_cell_tile_data(2, cell)
+	var tile_data = get_cell_tile_data(1, cell)
 	
 	for station in stations.get_children():
 		if station.current_cell == cell:

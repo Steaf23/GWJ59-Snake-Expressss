@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://b76ikgus0leci"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_57cm0"]
+[ext_resource type="Script" uid="uid://cpv2ehc25ibof" path="res://Player/player.gd" id="1_57cm0"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Player/train_wagon.tscn" id="2_pcmd7"]
 [ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_38y3x"]
 [ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="4_ja8eq"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_qr7ft"]
 [ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="8_ls7ly"]
 [ext_resource type="Texture2D" uid="uid://dhae1rlskn076" path="res://Assets/Art/BoostBarFill.png" id="9_hwl7o"]
-[ext_resource type="Script" path="res://Player/input_manager.gd" id="10_rsc34"]
+[ext_resource type="Script" uid="uid://blyp77hk2sxbd" path="res://Player/input_manager.gd" id="10_rsc34"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nrepr"]
 diffuse_texture = ExtResource("3_38y3x")
@@ -80,10 +80,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sdtcy"]
 _data = {
-"RESET": SubResource("Animation_p58ls"),
-"bite_end": SubResource("Animation_ceeba"),
-"bite_start": SubResource("Animation_uxrvx"),
-"open": SubResource("Animation_y2t2t")
+&"RESET": SubResource("Animation_p58ls"),
+&"bite_end": SubResource("Animation_ceeba"),
+&"bite_start": SubResource("Animation_uxrvx"),
+&"open": SubResource("Animation_y2t2t")
 }
 
 [sub_resource type="Gradient" id="Gradient_el5ac"]
@@ -124,7 +124,7 @@ vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wagons/Head"]
 libraries = {
-"": SubResource("AnimationLibrary_sdtcy")
+&"": SubResource("AnimationLibrary_sdtcy")
 }
 
 [node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_hlft0")]
