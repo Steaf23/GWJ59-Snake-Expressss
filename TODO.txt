@@ -1,0 +1,5 @@
+- add settings menu
+  - fullscreen mode
+  - helper grid opacity setting
+
+- add easter egg classic snake mode??

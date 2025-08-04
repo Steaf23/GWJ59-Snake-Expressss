@@ -51,7 +51,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if not start_level:
 		return
-		
+
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input_vector != Vector2.ZERO:
 		if first_move:

@@ -10,7 +10,7 @@ extends Node
 var selected_idx: int = 0
 
 func _ready() -> void:
-	var lvl_scn = load("res://world.tscn")
+	var lvl_scn = load("res://Level/Editor/world.tscn")
 	place_level(lvl_scn)
 	get_tree().paused = true
 	
@@ -66,7 +66,7 @@ func _on_load_pressed() -> void:
 	
 	
 func _on_new_pressed() -> void:
-	var lvl_scn = load("res://world.tscn")
+	var lvl_scn = load("res://Level/Editor/world.tscn")
 	place_level(lvl_scn)
 		
 	
