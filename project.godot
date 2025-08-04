@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GWJ59"
-run/main_scene="res://scene_manager.tscn"
+run/main_scene="res://Screens/scene_manager.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.0392157, 0.0784314, 0.14902, 1)
 boot_splash/image="res://Assets/Art/SnakeExpressssIllustration.png"
@@ -23,11 +23,11 @@ buses/default_bus_layout="res://SoundManager/bus_layout.tres"
 
 [autoload]
 
-Global="*res://global.gd"
+Global="*res://Level/global.gd"
 SoundManager="*res://SoundManager/sound_manager.tscn"
 Sounds="*res://SoundManager/sounds.gd"
 KeyActions="*res://InputMapper/KeyActions.gd"
-SceneSignalBus="*res://scene_signal_bus.gd"
+SceneSignalBus="*res://Screens/scene_signal_bus.gd"
 
 [display]
 

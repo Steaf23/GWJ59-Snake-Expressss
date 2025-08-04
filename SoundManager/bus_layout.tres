@@ -6,6 +6,7 @@ cutoff_hz = 465.0
 resonance = 1.0
 
 [resource]
+bus/0/mute = true
 bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false

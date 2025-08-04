@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmbwi8dupgp5c"]
+
+[ext_resource type="Texture2D" uid="uid://q21dyhdwk864" path="res://Assets/Art/SnakeExpressssIllustration.png" id="1_hf5sm"]
+[ext_resource type="Script" uid="uid://kd20kn8g6skh" path="res://Screens/main_menu.gd" id="1_i44qf"]
+[ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="1_pney5"]
+[ext_resource type="Texture2D" uid="uid://mm75oxq6keqy" path="res://Assets/Art/SE-Title.png" id="3_t364v"]
+[ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://Screens/ui_box.tscn" id="4_53gms"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2562"]
+font_color = Color(1, 1, 0.486275, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pney5")
+script = ExtResource("1_i44qf")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -613.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="TextureRect" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_t364v")
+stretch_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PLAY"
+flat = true
+
+[node name="UI_Box" parent="MarginContainer2/VBoxContainer/Play" instance=ExtResource("4_53gms")]
+show_behind_parent = true
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Level Select:"
+label_settings = SubResource("LabelSettings_n2562")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Levels" type="GridContainer" parent="MarginContainer2/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -865.0
+offset_top = -341.0
+offset_bottom = 341.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BG" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_hf5sm")
+stretch_mode = 2
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Play" to="." method="_on_button_pressed"]

@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsr3jvnqih2fr"]
+
+[ext_resource type="Script" uid="uid://cwxlaqbs7vslx" path="res://Screens/scene_manager.gd" id="1_qdl85"]
+[ext_resource type="Script" uid="uid://r2oltq3hpagt" path="res://Screens/pause_layer.gd" id="2_jds6n"]
+[ext_resource type="Theme" uid="uid://ctd6fvncsmxrq" path="res://Assets/main_theme.tres" id="3_s6lyg"]
+[ext_resource type="PackedScene" uid="uid://bi0ok84377k2o" path="res://InputMapper/key_rebind.tscn" id="4_5e26u"]
+[ext_resource type="PackedScene" uid="uid://ux1lgkuk6mvl" path="res://SoundManager/volume_settings.tscn" id="5_re0fw"]
+[ext_resource type="PackedScene" uid="uid://kk6turlv1sy3" path="res://Screens/ui_box.tscn" id="6_erj1q"]
+[ext_resource type="FontFile" uid="uid://wippv43goqk8" path="res://Early GameBoy.ttf" id="7_rvnvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk0w"]
+bg_color = Color(0, 0, 0, 0.462745)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igdc2"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_8tjo2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cawun"]
+font = ExtResource("7_rvnvj")
+font_color = Color(1, 1, 1, 0.807843)
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_qdl85")
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("2_jds6n")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PauseLayer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nk0w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_s6lyg")
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_igdc2")
+horizontal_alignment = 1
+
+[node name="KeyRebind" parent="PauseLayer/MarginContainer/VBoxContainer" instance=ExtResource("4_5e26u")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RebindLabel" parent="PauseLayer/MarginContainer/VBoxContainer/KeyRebind/VBoxContainer" index="0"]
+label_settings = SubResource("LabelSettings_8tjo2")
+
+[node name="DoneButton" parent="PauseLayer/MarginContainer/VBoxContainer/KeyRebind/VBoxContainer" index="2"]
+visible = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeSettings" parent="PauseLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_re0fw")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="PauseLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainMenu" type="Button" parent="PauseLayer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_s6lyg")
+text = "Main Menu"
+flat = true
+
+[node name="UI_Box" parent="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" instance=ExtResource("6_erj1q")]
+show_behind_parent = true
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -197.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "Pause: ESC or P"
+label_settings = SubResource("LabelSettings_cawun")
+
+[connection signal="paused" from="PauseLayer" to="." method="_on_pause_layer_paused"]
+[connection signal="pressed" from="PauseLayer/MarginContainer/VBoxContainer/MarginContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+
+[editable path="PauseLayer/MarginContainer/VBoxContainer/KeyRebind"]
