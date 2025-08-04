@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0ompna74v6kb"]
 
-[ext_resource type="Script" path="res://SoundManager/volume_slider.gd" id="1_ci3fq"]
+[ext_resource type="Script" uid="uid://cxt5hsmiivxo5" path="res://SoundManager/volume_slider.gd" id="1_ci3fq"]
 [ext_resource type="AudioStream" uid="uid://b6li2bhv14yln" path="res://Assets/Audio/Menu_Scroll.wav" id="2_v3w2f"]
 
 [node name="VolumeSlider" type="HBoxContainer"]

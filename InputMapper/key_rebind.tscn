@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bi0ok84377k2o"]
 
-[ext_resource type="Script" path="res://InputMapper/KeyRebind.gd" id="1_r3uuk"]
-[ext_resource type="Script" path="res://InputMapper/InputMapper.gd" id="1_wokv1"]
-[ext_resource type="Script" path="res://InputMapper/ButtonHolder.gd" id="2_gf0iv"]
-[ext_resource type="Script" path="res://InputMapper/KeySelectPopup.gd" id="3_e2v1x"]
+[ext_resource type="Script" uid="uid://cj1a46ij6l3b3" path="res://InputMapper/KeyRebind.gd" id="1_r3uuk"]
+[ext_resource type="Script" uid="uid://cbcanrg3pu4bd" path="res://InputMapper/InputMapper.gd" id="1_wokv1"]
+[ext_resource type="Script" uid="uid://d0mf6a6dwob2a" path="res://InputMapper/ButtonHolder.gd" id="2_gf0iv"]
+[ext_resource type="Script" uid="uid://do03hgmlrqk7d" path="res://InputMapper/KeySelectPopup.gd" id="3_e2v1x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b2v11"]
 font_size = 32

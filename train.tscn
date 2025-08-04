@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://b76ikgus0leci"]
 
-[ext_resource type="Script" path="res://train.gd" id="1_3y54e"]
+[ext_resource type="Script" uid="uid://dtwwrudpu2077" path="res://train.gd" id="1_3y54e"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://train_wagon.tscn" id="2_55dmj"]
 [ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
 [ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
 [ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://bound_camera_2d.tscn" id="5_164jo"]
 [ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="5_dlki4"]
-[ext_resource type="Script" path="res://powerup_helper.gd" id="6_dnjwl"]
+[ext_resource type="Script" uid="uid://d237t488y1kla" path="res://powerup_helper.gd" id="6_dnjwl"]
 [ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_j46re"]
 [ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="7_rd5s4"]
 [ext_resource type="Texture2D" uid="uid://dhae1rlskn076" path="res://Assets/Art/BoostBarFill.png" id="9_ci13t"]
@@ -80,10 +80,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sdtcy"]
 _data = {
-"RESET": SubResource("Animation_p58ls"),
-"bite_end": SubResource("Animation_ceeba"),
-"bite_start": SubResource("Animation_uxrvx"),
-"open": SubResource("Animation_y2t2t")
+&"RESET": SubResource("Animation_p58ls"),
+&"bite_end": SubResource("Animation_ceeba"),
+&"bite_start": SubResource("Animation_uxrvx"),
+&"open": SubResource("Animation_y2t2t")
 }
 
 [sub_resource type="Gradient" id="Gradient_el5ac"]

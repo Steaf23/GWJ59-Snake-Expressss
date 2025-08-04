@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://i08a75vvwr8y"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_gwo76"]
-[ext_resource type="Script" path="res://grid.gd" id="2_6su0q"]
+[ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://grid.gd" id="2_6su0q"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://train.tscn" id="3_2uhh1"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="3_hr3p0"]
 

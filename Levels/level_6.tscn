@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgu7nh8l6wxa2"]
 
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_o6ey8"]
-[ext_resource type="Script" path="res://grid.gd" id="2_431wl"]
+[ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://grid.gd" id="2_431wl"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://delivery_station.tscn" id="3_nbtmx"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://station.tscn" id="5_0lq0s"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://item.tscn" id="8_m8ds1"]

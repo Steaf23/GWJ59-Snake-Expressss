@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxdpcp5j12n46"]
 
-[ext_resource type="Script" path="res://grid.gd" id="1_1qjsb"]
+[ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://grid.gd" id="1_1qjsb"]
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://TerrainTiles.tres" id="1_5xfig"]
 
 [node name="Test Level" type="Node2D"]

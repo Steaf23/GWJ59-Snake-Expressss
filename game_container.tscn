@@ -12,6 +12,5 @@ stretch = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1280, 720)
-size_2d_override = Vector2i(640, 360)
 size_2d_override_stretch = true
 render_target_update_mode = 4
