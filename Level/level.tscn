@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d1b0pipqqgj3e"]
+[gd_scene load_steps=13 format=4 uid="uid://d1b0pipqqgj3e"]
 
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/train.tscn" id="1_o6mkr"]
 [ext_resource type="Script" uid="uid://bbwubsdviq1xc" path="res://Level/level.gd" id="1_uawph"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="3_iincs"]
 [ext_resource type="Script" uid="uid://bqenrhbibq1yg" path="res://Level/grid_overlay.gd" id="3_nk1il"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_nk1il"]
+[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Level/train_wagon.tscn" id="7_d6qko"]
 
 [sub_resource type="Gradient" id="Gradient_iincs"]
 offsets = PackedFloat32Array(0)
@@ -60,9 +61,6 @@ position = Vector2(128, -64)
 [node name="Train" parent="." instance=ExtResource("1_o6mkr")]
 position = Vector2(128, 128)
 
-[node name="MovementTimer" parent="Train" index="0"]
-wait_time = 1.2
-
 [node name="BoundCamera2D" parent="Train/Wagons/Head" index="3"]
 limit_left = -256
 limit_top = -32
@@ -74,6 +72,14 @@ offset_left = -256.0
 offset_top = -32.0
 offset_right = -448.0
 offset_bottom = -112.0
+
+[node name="TrainSection" parent="Train/Wagons" index="1" instance=ExtResource("7_d6qko")]
+
+[node name="TrainSection2" parent="Train/Wagons" index="2" instance=ExtResource("7_d6qko")]
+
+[node name="TrainSection3" parent="Train/Wagons" index="3" instance=ExtResource("7_d6qko")]
+
+[node name="TrainSection4" parent="Train/Wagons" index="4" instance=ExtResource("7_d6qko")]
 
 [connection signal="move_timer_timeout" from="Train" to="." method="_on_train_move_timer_timeout"]
 

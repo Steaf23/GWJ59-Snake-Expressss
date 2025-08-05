@@ -7,7 +7,6 @@ extends Area2D
 @onready var passenger: Node2D = $Passenger
 
 var current_cell: Vector2i = Vector2i()
-var pos_tween: Tween
 
 var target_angle: float = 0.0
 var rotation_time: float = 0.0
@@ -38,11 +37,13 @@ func move(target_cell: Vector2i, reposition: bool) -> void:
 	
 	if not reposition:
 		return
-		
-	if pos_tween != null and pos_tween.is_running():
-		pos_tween.stop()
+
 	
-	pos_tween = create_tween()
-	var tweener = pos_tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed * 1.2)
+	
+	var tween = create_tween()
+	var tweener = tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed * 1.2)
 	tweener.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT_IN)
+	
+	await get_tree().create_timer(0.14).timeout
 	current_cell = target_cell
+	

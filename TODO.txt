@@ -3,3 +3,13 @@
   - helper grid opacity setting
 
 - add easter egg classic snake mode??
+
+- add accessibility:
+  - add calibration for video latency
+  - option to not die when running into walls (but instead lose a bit of time).
+
+
+
+- move the snake directly when the button is hit
+
+- cut the move timer short???

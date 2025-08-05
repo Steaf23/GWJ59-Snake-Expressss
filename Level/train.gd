@@ -22,6 +22,7 @@ var old_boost_left: int = 0
 @onready var tail: TrainWagon = %Tail
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 @onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
+@onready var movement_timer: Timer = $MovementTimer
 
 var current_direction : Vector2i = Vector2i.DOWN
 var wagon_queue: int = 0
@@ -56,20 +57,24 @@ func _physics_process(delta: float) -> void:
 	if input_vector != Vector2.ZERO:
 		if first_move:
 			first_move = false
-			$MovementTimer.start(base_movement_time)
-			move_timer_timeout.emit()
+			movement_timer.start(base_movement_time)
+			#move_timer_timeout.emit()
 		queued_input = input_vector
 		
 	boost_bar.visible = old_boost_left > 0
 	boost_bar.value = old_boost_left
 	
-	if has_portal:
-		head.modulate = Color(1.0, 1.0, 1.0, 0.5)
-	else:
-		if head.modulate.a < 1.0:
-			await get_tree().create_timer(base_movement_time).timeout
-			head.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	#if has_portal:
+		#head.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	#else:
+		#if head.modulate.a < 1.0:
+			#await get_tree().create_timer(base_movement_time).timeout
+			#head.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
+
+func _process(delta: float) -> void:
+	queue_redraw()
+	
 
 func _on_movement_timer_timeout() -> void:
 	move_timer_timeout.emit()
@@ -111,7 +116,7 @@ func move(precondition: Callable):
 		SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
 		
 	current_cell = target_cell
-	update_wagons($MovementTimer.wait_time)
+	update_wagons(movement_timer.wait_time)
 		
 	if boost_left > 0:
 		old_boost_left = boost_left
@@ -270,15 +275,15 @@ func start_boost() -> void:
 	SoundManager.play_sfx(Sounds.BOOST)
 	boost_left = boost_size
 	old_boost_left = boost_size
-	$MovementTimer.stop()
-	$MovementTimer.wait_time = boost_multiplier * base_movement_time
-	$MovementTimer.start()
+	movement_timer.stop()
+	movement_timer.wait_time = boost_multiplier * base_movement_time
+	movement_timer.start()
 	
 	
 func end_boost() -> void:
-	$MovementTimer.stop()
-	$MovementTimer.wait_time = base_movement_time
-	$MovementTimer.start()
+	movement_timer.stop()
+	movement_timer.wait_time = base_movement_time
+	movement_timer.start()
 	
 	
 var ending_bite := false
@@ -309,3 +314,14 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"bite_end":
 			ending_bite = false
+
+
+func _draw() -> void:
+	#draw_rect(Rect2(to_local(current_cell * Global.TILE_SIZE), Vector2(Global.TILE_SIZE, Global.TILE_SIZE)), Color.DARK_RED)
+#
+	var c = Color.BLACK
+	c.a = 0.25
+	for w in wagons.get_children():
+		var size = 24
+		var start_offset = (Global.TILE_SIZE - size) / 2
+		draw_rect(Rect2(to_local(w.current_cell * Global.TILE_SIZE) + Vector2(start_offset, start_offset), Vector2(size, size)), c)
