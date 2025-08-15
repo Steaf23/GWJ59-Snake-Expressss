@@ -51,7 +51,7 @@ func get_pickup_cells() -> Array[Vector2i]:
 	return cells
 
 
-func pickup_passenger(wagon: TrainWagon) -> void:
+func pickup_passenger(wagon: Wagon) -> void:
 	passenger_count -= 1
 	$Count.text = str(passenger_count)
 	$Sprite2D.frame = 0 if passenger_count > 0 else 1

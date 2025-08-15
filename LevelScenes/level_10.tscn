@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_vvwnj"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="5_000ny"]
 [ext_resource type="Texture2D" uid="uid://c2mkhr1sxwgyv" path="res://Assets/Art/GoldenFrog.png" id="6_rbboj"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/train.tscn" id="7_m5ab4"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="7_m5ab4"]
 
 [sub_resource type="Gradient" id="Gradient_ts3gg"]
 resource_local_to_scene = true

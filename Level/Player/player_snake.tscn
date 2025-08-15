@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b76ikgus0leci"]
+[gd_scene load_steps=17 format=3 uid="uid://b76ikgus0leci"]
 
-[ext_resource type="Script" uid="uid://dtwwrudpu2077" path="res://Level/train.gd" id="1_3y54e"]
-[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Level/train_wagon.tscn" id="2_55dmj"]
+[ext_resource type="Script" uid="uid://dtwwrudpu2077" path="res://Level/Player/player_snake.gd" id="1_3y54e"]
+[ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Level/Player/wagon.tscn" id="2_55dmj"]
 [ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
 [ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
-[ext_resource type="PackedScene" uid="uid://ckp6e67t60hyx" path="res://Level/bound_camera_2d.tscn" id="5_164jo"]
 [ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="5_dlki4"]
 [ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_j46re"]
 [ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="7_rd5s4"]
@@ -95,7 +94,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
-[node name="Train" type="Node2D"]
+[node name="PlayerSnake" type="Node2D"]
 script = ExtResource("1_3y54e")
 boost_multiplier = 0.75
 
@@ -118,24 +117,6 @@ vframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_sdtcy")
 }
-
-[node name="BoundCamera2D" parent="Wagons/Head" instance=ExtResource("5_164jo")]
-limit_left = -384
-limit_top = -160
-limit_right = 704
-limit_bottom = 480
-
-[node name="Corner1" parent="Wagons/Head/BoundCamera2D" index="0"]
-position = Vector2(-384, -160)
-
-[node name="Corner2" parent="Wagons/Head/BoundCamera2D" index="1"]
-position = Vector2(704, 480)
-
-[node name="ReferenceRect" parent="Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
-offset_left = -384.0
-offset_top = -160.0
-offset_right = -576.0
-offset_bottom = -240.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="Wagons/Head"]
 position = Vector2(31, 14)
@@ -187,5 +168,4 @@ texture_progress = ExtResource("9_ci13t")
 [connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]
 
 [editable path="Wagons/Head"]
-[editable path="Wagons/Head/BoundCamera2D"]
 [editable path="Wagons/Tail"]

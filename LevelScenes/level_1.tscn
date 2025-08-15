@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="3_w537q"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_fym0b"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="5_pk6k6"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/train.tscn" id="6_v6b7g"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="6_v6b7g"]
 
 [sub_resource type="Gradient" id="Gradient_3rv1o"]
 resource_local_to_scene = true

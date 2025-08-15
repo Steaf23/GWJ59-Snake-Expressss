@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="3_yh61g"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_bp8gc"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="5_k4lt5"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/train.tscn" id="6_x7j64"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="6_x7j64"]
 
 [sub_resource type="Gradient" id="Gradient_7er52"]
 offsets = PackedFloat32Array(0.00613497, 0.319018, 0.650307, 1)

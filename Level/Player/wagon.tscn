@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2722l1rurupt"]
+
+[ext_resource type="Script" uid="uid://doqv8tk4dv81h" path="res://Level/Player/wagon.gd" id="1_f4q22"]
+[ext_resource type="Texture2D" uid="uid://drkjlmhxl81q7" path="res://Assets/Art/SnakeTrain_Wagon.png" id="2_ryeiw"]
+[ext_resource type="Texture2D" uid="uid://cmne5ugcrnxql" path="res://Assets/Art/NewtWagonGray.png" id="3_xdn1l"]
+
+[node name="Wagon" type="Area2D" groups=["grid_object"]]
+script = ExtResource("1_f4q22")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_ryeiw")
+
+[node name="Passenger" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.756863, 1.74118, 2.0902, 1)
+position = Vector2(16, 16)
+texture = ExtResource("3_xdn1l")

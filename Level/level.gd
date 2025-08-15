@@ -6,14 +6,14 @@ extends Node2D
 
 @onready var stations: Node2D = $Stations
 @onready var items: Node2D = $Items
-@onready var train: Train = $Train
+@onready var train: PlayerSnake = $PlayerSnake
 
 
 func _ready() -> void:
 	grid_overlay.setup(foreground.get_used_rect())
 
 
-func _on_train_move_timer_timeout() -> void:
+func _on_player_snake_move_timer_timeout() -> void:
 	check_level_won()
 	train.move(can_object_travel_to)
 	#try_pickup_passenger()

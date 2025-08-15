@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://Resources/TerrainTiles.tres" id="1_jx55f"]
 [ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://Level/grid.gd" id="2_x7jsl"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="3_1qj37"]
-[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/train.tscn" id="4_1q0bi"]
+[ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="4_1q0bi"]
 
 [node name="Test Level" type="Node2D"]
 y_sort_enabled = true

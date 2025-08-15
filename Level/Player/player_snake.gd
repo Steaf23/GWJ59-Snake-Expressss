@@ -1,4 +1,5 @@
-class_name Train
+@icon("res://Assets/Art/SnakeTrain_Head1.png")
+class_name PlayerSnake
 extends Node2D
 
 signal move_timer_timeout()
@@ -16,10 +17,10 @@ var has_portal = false
 var boost_left: int = 0
 var old_boost_left: int = 0
 
-@onready var TRAIN_WAGON = preload("res://Level/train_wagon.tscn")
+@onready var TRAIN_WAGON = preload("res://Level/Player/wagon.tscn")
 @onready var wagons = $Wagons
-@onready var head: TrainWagon = %Head
-@onready var tail: TrainWagon = %Tail
+@onready var head: Wagon = %Head
+@onready var tail: Wagon = %Tail
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 @onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
 @onready var movement_timer: Timer = $MovementTimer
@@ -101,7 +102,7 @@ func move(precondition: Callable):
 		return
 		
 	for wagon in wagons.get_children():
-		if wagon is TrainWagon and wagon.current_cell == target_cell:
+		if wagon is Wagon and wagon.current_cell == target_cell:
 			if has_portal:
 				has_portal = false
 				SoundManager.play_sfx(Sounds.GHOST)
@@ -116,7 +117,7 @@ func move(precondition: Callable):
 		SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
 		
 	current_cell = target_cell
-	update_wagons(movement_timer.wait_time)
+	update_wagons()
 		
 	if boost_left > 0:
 		old_boost_left = boost_left
@@ -130,7 +131,7 @@ func add_wagon() -> void:
 	wagon_queue += 1
 	
 	
-func update_wagons(tween_speed: float) -> void:	
+func update_wagons() -> void:	
 	# add wagon if queue is bigger than 0
 	var wagon_created = false
 	if wagon_queue > 0:
@@ -141,7 +142,6 @@ func update_wagons(tween_speed: float) -> void:
 	var target_cell = current_cell
 	for wagon in wagons.get_children():
 		var current_wagon_cell = wagon.current_cell
-		wagon.tween_speed = tween_speed
 		wagon.move(target_cell, wagon == head or not wagon_created)
 		target_cell = current_wagon_cell
 
@@ -171,13 +171,13 @@ func create_wagon() -> void:
 
 func can_add_passenger() -> bool:
 	for wagon in wagons.get_children():
-		if wagon is TrainWagon:
+		if wagon is Wagon:
 			if not wagon.has_passenger && wagon.can_have_passenger:
 				return true			
 	return false
 	
 	
-func add_passenger(wagon: TrainWagon) -> void:
+func add_passenger(wagon: Wagon) -> void:
 	if not can_add_passenger():
 		return
 	
@@ -187,7 +187,7 @@ func add_passenger(wagon: TrainWagon) -> void:
 		return
 
 
-func remove_passenger(wagon: TrainWagon) -> void:
+func remove_passenger(wagon: Wagon) -> void:
 	if wagon.has_passenger:
 		SoundManager.play_random_sfx([Sounds.DELIVERY_1, Sounds.DELIVERY_2, Sounds.DELIVERY_3])
 		
@@ -242,10 +242,10 @@ func get_passenger_count() -> int:
 	return count
 
 
-func get_available_wagons() -> Array[TrainWagon]:
-	var available_wagons: Array[TrainWagon] = []
+func get_available_wagons() -> Array[Wagon]:
+	var available_wagons: Array[Wagon] = []
 	for wagon in wagons.get_children():
-		if wagon is TrainWagon:
+		if wagon is Wagon:
 			if not wagon.has_passenger and wagon.can_have_passenger:
 				available_wagons.append(wagon)
 	return available_wagons

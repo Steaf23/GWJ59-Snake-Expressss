@@ -49,7 +49,7 @@ func get_pickup_cells() -> Array[Vector2i]:
 	return cells
 	
 	
-func deliver_passenger(wagon: TrainWagon) -> void:
+func deliver_passenger(wagon: Wagon) -> void:
 	capacity -= 1
 	set_count(capacity)
 	

@@ -1,7 +1,7 @@
-class_name TrainWagon
+@icon("res://Assets/Art/SnakeTrain_Wagon.png")
+class_name Wagon
 extends Area2D
 
-@export var tween_speed = 0.5
 @export var can_have_passenger = true
 
 @onready var passenger: Node2D = $Passenger
@@ -15,8 +15,6 @@ var has_passenger: bool = false:
 	set(value):
 		has_passenger = value and can_have_passenger
 
-		if value:
-			await get_tree().create_timer(tween_speed).timeout
 		passenger.visible = has_passenger
 		
 
@@ -41,7 +39,7 @@ func move(target_cell: Vector2i, reposition: bool) -> void:
 	
 	
 	var tween = create_tween()
-	var tweener = tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), tween_speed * 1.2)
+	var tweener = tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), 0.24)
 	tweener.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT_IN)
 	
 	await get_tree().create_timer(0.14).timeout
