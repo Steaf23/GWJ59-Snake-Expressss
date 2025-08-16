@@ -6,7 +6,7 @@ signal move_timer_timeout()
 signal item_picked_up()
 signal frogged()
 
-@export var base_movement_time: float = 0.22
+@export var base_movement_time: float = 0.5
 
 @export var grow_amount: int = 1
 @export var boost_multiplier: float = 0.5
@@ -24,12 +24,12 @@ var old_boost_left: int = 0
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 @onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
 @onready var movement_timer: Timer = $MovementTimer
+@onready var level: Level
 
 var current_direction : Vector2i = Vector2i.DOWN
 var wagon_queue: int = 0
 var insert_new_wagon: bool = false
 var current_cell: Vector2i
-var freeze_tail = false
 
 var queued_input = Vector2()
 
@@ -48,7 +48,10 @@ func _ready():
 	
 	await get_tree().create_timer(0.5).timeout
 	start_level = true
-
+	
+	for w in wagons.get_children():
+		w.snake = self
+		
 
 func _physics_process(delta: float) -> void:
 	if not start_level:
@@ -80,6 +83,27 @@ func _process(delta: float) -> void:
 func _on_movement_timer_timeout() -> void:
 	move_timer_timeout.emit()
 
+
+func take_turn(move_precondition: Callable) -> void:
+	if not level:
+		return
+		
+	move(move_precondition)
+	
+	# pickup item
+	var item = level.item_at_cell(current_cell)
+	if item:
+		pickup_item(item)
+	
+	# pickup passengers after item to account for possible change in amount of wagons.
+	for wagon in get_available_wagons():
+		for station in level.pickup_stations():
+			if wagon.current_cell in station.get_pickup_cells():
+				station.pickup_passenger(wagon)
+				add_passenger(wagon)
+				# only 1 passenger can be picked up per turn
+				return
+	
 
 func move(precondition: Callable):
 	var prev_direction = current_direction
@@ -148,6 +172,7 @@ func update_wagons() -> void:
 
 func create_wagon() -> void:
 	var wagon = TRAIN_WAGON.instantiate()
+	wagon.snake = self
 	wagons.add_child(wagon)
 	wagons.move_child(wagon, 1)
 	var new_wagon_cell = head.current_cell
@@ -157,16 +182,12 @@ func create_wagon() -> void:
 	wagon.target_angle = wagon.rotation
 	
 	var scale_tween = create_tween()
-	var t1 = scale_tween.tween_property(wagon, ^"scale", Vector2(1.0, 1.0), wagon.tween_speed)
+	var t1 = scale_tween.tween_property(wagon, ^"scale", Vector2(1.0, 1.0), movement_timer.wait_time + 0.2)
 	t1.from(Vector2(0, 0)).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
 	var opacity_tween = create_tween()
-	var t3 = opacity_tween.tween_property(wagon, ^"modulate", Color.WHITE, wagon.tween_speed)
+	var t3 = opacity_tween.tween_property(wagon, ^"modulate", Color.WHITE, movement_timer.wait_time + 0.2)
 	t3.from(Color(1, 1, 1, 0)).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)	
-	
-	freeze_tail = true
-	await get_tree().create_timer(wagon.tween_speed).timeout
-	freeze_tail = false
 
 
 func can_add_passenger() -> bool:
@@ -193,7 +214,7 @@ func remove_passenger(wagon: Wagon) -> void:
 		
 	wagon.has_passenger = false
 
-
+# Item cannot be null
 func pickup_item(item: Item) -> void:
 	var powerup = true
 	match item.type:

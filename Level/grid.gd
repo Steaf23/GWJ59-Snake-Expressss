@@ -67,12 +67,6 @@ func try_deliver_passenger():
 				train.remove_passenger(wagon)
 				return
 
-	
-func try_pickup_item() -> void:
-	for item in items.get_children():
-		if train.current_cell == item.current_cell:
-			train.pickup_item(item)
-
 
 func update_train_head() -> void:
 	var close_to_item: bool = false

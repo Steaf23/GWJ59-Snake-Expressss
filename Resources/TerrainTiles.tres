@@ -1,11 +1,11 @@
 [gd_resource type="TileSet" load_steps=13 format=3 uid="uid://qvpbxfxmduuc"]
 
-[ext_resource type="Texture2D" uid="uid://duu8qceldeudx" path="res://Assets/Art/BushesPacked.png" id="1_v0e6f"]
-[ext_resource type="Texture2D" uid="uid://doniste0bwuev" path="res://Assets/Art/tileset.png" id="2_1bp4s"]
-[ext_resource type="Texture2D" uid="uid://bydxsigyn2nim" path="res://Assets/Art/DirtPacked.png" id="2_3okbb"]
-[ext_resource type="Texture2D" uid="uid://cx84v6dyo42jw" path="res://Assets/Art/SwampWater.png" id="3_54o66"]
-[ext_resource type="Texture2D" uid="uid://b8iswoatjwnvb" path="res://Assets/Art/DirtCorners.png" id="5_6d8my"]
-[ext_resource type="Texture2D" uid="uid://bnubdrxgj82pv" path="res://Assets/Art/SwampStone4.png" id="6_h0ar1"]
+[ext_resource type="Texture2D" uid="uid://qbpdyf31ftl5" path="res://Assets/Art/BushesPacked.png" id="1_v0e6f"]
+[ext_resource type="Texture2D" uid="uid://cq0oqsrckd3ia" path="res://Assets/Art/tileset.png" id="2_1bp4s"]
+[ext_resource type="Texture2D" uid="uid://3vydsn1w2mhr" path="res://Assets/Art/DirtPacked.png" id="2_3okbb"]
+[ext_resource type="Texture2D" uid="uid://v7yoiomoygsd" path="res://Assets/Art/SwampWater.png" id="3_54o66"]
+[ext_resource type="Texture2D" uid="uid://bgacj86ahog0r" path="res://Assets/Art/DirtCorners.png" id="5_6d8my"]
+[ext_resource type="Texture2D" uid="uid://den6uwxlaq3sp" path="res://Assets/Art/SwampStone4.png" id="6_h0ar1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i85nu"]
 texture = ExtResource("1_v0e6f")

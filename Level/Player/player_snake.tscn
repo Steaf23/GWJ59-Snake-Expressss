@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dtwwrudpu2077" path="res://Level/Player/player_snake.gd" id="1_3y54e"]
 [ext_resource type="PackedScene" uid="uid://d2722l1rurupt" path="res://Level/Player/wagon.tscn" id="2_55dmj"]
-[ext_resource type="Texture2D" uid="uid://bjm7uqta62wdq" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
-[ext_resource type="Texture2D" uid="uid://bq03pgquj441b" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
-[ext_resource type="Texture2D" uid="uid://ca6ccp88f2py4" path="res://Assets/Art/snake_normal.png" id="5_dlki4"]
-[ext_resource type="Texture2D" uid="uid://bs5s034158csb" path="res://Assets/Art/BoostBarBG.png" id="7_j46re"]
-[ext_resource type="Texture2D" uid="uid://cm1h7c2se384e" path="res://Assets/Art/BoostBar.png" id="7_rd5s4"]
-[ext_resource type="Texture2D" uid="uid://dhae1rlskn076" path="res://Assets/Art/BoostBarFill.png" id="9_ci13t"]
+[ext_resource type="Texture2D" uid="uid://brja8a8d2c1vy" path="res://Assets/Art/SnakeTrain_Head_Bite.png" id="3_j8u8j"]
+[ext_resource type="Texture2D" uid="uid://dytvctiebqjli" path="res://Assets/Art/SnakeTrain_Tail.png" id="4_kcxdi"]
+[ext_resource type="Texture2D" uid="uid://tjrgn6sb6nsx" path="res://Assets/Art/snake_normal.png" id="5_dlki4"]
+[ext_resource type="Texture2D" uid="uid://p402isn11ko" path="res://Assets/Art/BoostBarBG.png" id="7_j46re"]
+[ext_resource type="Texture2D" uid="uid://bksp142tua0ji" path="res://Assets/Art/BoostBar.png" id="7_rd5s4"]
+[ext_resource type="Texture2D" uid="uid://cicsyovieieqv" path="res://Assets/Art/BoostBarFill.png" id="9_ci13t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vula4"]
 diffuse_texture = ExtResource("3_j8u8j")

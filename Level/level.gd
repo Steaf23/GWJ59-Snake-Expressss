@@ -11,16 +11,32 @@ extends Node2D
 
 func _ready() -> void:
 	grid_overlay.setup(foreground.get_used_rect())
+	train.level = self
 
 
 func _on_player_snake_move_timer_timeout() -> void:
 	check_level_won()
-	train.move(can_object_travel_to)
+	train.take_turn(can_object_travel_to)
+	#train.move(can_object_travel_to)
 	#try_pickup_passenger()
 	#try_pickup_item()
 	#try_deliver_passenger()
 	#update_train_head() # used for opening the mouth of the snake when its close to a pickup
 
+
+func item_at_cell(cell: Vector2i) -> Item:
+	for item in items.get_children():
+		if cell == item.current_cell:
+			return item
+	
+	return null
+
+
+func pickup_stations() -> Array[Station]:
+	var result: Array[Station]
+	result.assign(stations.get_children().filter(func(s): return not s.is_delivery))
+	return result
+	
 
 func check_level_won() -> void:
 	if train.get_passenger_count() != 0:

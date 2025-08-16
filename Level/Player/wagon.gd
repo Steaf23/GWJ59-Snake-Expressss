@@ -5,6 +5,7 @@ extends Area2D
 @export var can_have_passenger = true
 
 @onready var passenger: Node2D = $Passenger
+@onready var snake: PlayerSnake
 
 var current_cell: Vector2i = Vector2i()
 
@@ -23,7 +24,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	rotation_time += delta * 0.8
+	rotation_time += delta * 2.0
 	$Sprite.rotation = lerp_angle($Sprite.rotation, target_angle, rotation_time)
 	$Passenger.rotation = lerp_angle($Passenger.rotation, target_angle, rotation_time)
 
@@ -37,9 +38,8 @@ func move(target_cell: Vector2i, reposition: bool) -> void:
 		return
 
 	
-	
 	var tween = create_tween()
-	var tweener = tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), 0.24)
+	var tweener = tween.tween_property(self, ^"global_position", Vector2(target_cell * Global.TILE_SIZE), snake.base_movement_time)
 	tweener.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT_IN)
 	
 	await get_tree().create_timer(0.14).timeout

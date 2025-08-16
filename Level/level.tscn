@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d1b0pipqqgj3e"]
+[gd_scene load_steps=13 format=4 uid="uid://d1b0pipqqgj3e"]
 
 [ext_resource type="Script" uid="uid://bbwubsdviq1xc" path="res://Level/level.gd" id="1_uawph"]
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://Resources/TerrainTiles.tres" id="2_52x1o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bqenrhbibq1yg" path="res://Level/grid_overlay.gd" id="3_nk1il"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="4_d6qko"]
 [ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_nk1il"]
+[ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="7_d6qko"]
 
 [sub_resource type="Gradient" id="Gradient_iincs"]
 offsets = PackedFloat32Array(0)
@@ -59,6 +60,14 @@ number_gradient = SubResource("Gradient_d6qko")
 position = Vector2(640, 192)
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="Item2" parent="Items" instance=ExtResource("7_d6qko")]
+position = Vector2(704, 288)
+type = 1
+
+[node name="Item8" parent="Items" instance=ExtResource("7_d6qko")]
+position = Vector2(609, 288)
+type = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
