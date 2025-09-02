@@ -1,26 +1,8 @@
 @tool
-class_name Station
+class_name PickupStation
 extends Node2D
 
-enum STATION_TYPE {
-	Square,
-	Triangle,
-	Star,
-	Circle,
-	Dusk,
-	Dawn,
-}
 
-@export var entry: StationEntry: 
-	set(value):
-		entry = value
-		if entry != null:
-			if not is_node_ready():
-				await ready
-			$Icon.modulate = entry.color
-
-
-@export var is_delivery: bool
 @export var starting_count: int = 2:
 	set(value):
 		starting_count = value
@@ -32,7 +14,6 @@ var current_cell: Vector2i
 
 
 func _ready() -> void:
-	self.entry = entry
 	current_cell = (global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
 	
 	if $Count != null:

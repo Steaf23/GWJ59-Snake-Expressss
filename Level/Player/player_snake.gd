@@ -17,17 +17,15 @@ var has_portal = false
 var boost_left: int = 0
 var old_boost_left: int = 0
 
-@onready var TRAIN_WAGON = preload("res://Level/Player/wagon.tscn")
-@onready var wagons = $Wagons
-@onready var head: Wagon = %Head
-@onready var tail: Wagon = %Tail
+@onready var wagons: Wagons = $Wagons
+@onready var head: Wagon = wagons.head
+@onready var tail: Wagon = wagons.tail
 @onready var head_player: AnimationPlayer = $Wagons/Head/AnimationPlayer
 @onready var boost_bar: TextureProgressBar = $HUDLayer/MarginContainer/BoostBar
 @onready var movement_timer: Timer = $MovementTimer
 @onready var level: Level
 
 var current_direction : Vector2i = Vector2i.DOWN
-var wagon_queue: int = 0
 var insert_new_wagon: bool = false
 var current_cell: Vector2i
 
@@ -49,6 +47,7 @@ func _ready():
 	await get_tree().create_timer(0.5).timeout
 	start_level = true
 	
+	wagons.wagon_spawn_time = movement_timer.wait_time + 0.2
 	for w in wagons.get_children():
 		w.snake = self
 		
@@ -68,12 +67,12 @@ func _physics_process(delta: float) -> void:
 	boost_bar.visible = old_boost_left > 0
 	boost_bar.value = old_boost_left
 	
-	#if has_portal:
-		#head.modulate = Color(1.0, 1.0, 1.0, 0.5)
-	#else:
-		#if head.modulate.a < 1.0:
-			#await get_tree().create_timer(base_movement_time).timeout
-			#head.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	if has_portal:
+		head.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	else:
+		if head.modulate.a < 1.0:
+			await get_tree().create_timer(base_movement_time).timeout
+			head.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func _process(delta: float) -> void:
@@ -96,12 +95,26 @@ func take_turn(move_precondition: Callable) -> void:
 		pickup_item(item)
 	
 	# pickup passengers after item to account for possible change in amount of wagons.
-	for wagon in get_available_wagons():
-		for station in level.pickup_stations():
+	try_pickup()
+	try_deliver()
+	
+	
+func try_pickup() -> void:
+	for wagon: Wagon in wagons.get_available_wagons():
+		for station: PickupStation in level.get_pickup_stations():
 			if wagon.current_cell in station.get_pickup_cells():
 				station.pickup_passenger(wagon)
 				add_passenger(wagon)
 				# only 1 passenger can be picked up per turn
+				return
+
+
+func try_deliver() -> void:
+	for wagon: Wagon in wagons.get_occupied_wagons():
+		for station: DeliveryStation in level.get_delivery_stations():
+			if wagon.current_cell in station.get_delivery_cells():
+				station.deliver_passenger(wagon)
+				remove_passenger(wagon)
 				return
 	
 
@@ -125,8 +138,8 @@ func move(precondition: Callable):
 		SceneSignalBus.reload_level()
 		return
 		
-	for wagon in wagons.get_children():
-		if wagon is Wagon and wagon.current_cell == target_cell:
+	for wagon: Wagon in wagons.get_all_wagons():
+		if wagon.current_cell == target_cell:
 			if has_portal:
 				has_portal = false
 				SoundManager.play_sfx(Sounds.GHOST)
@@ -141,7 +154,7 @@ func move(precondition: Callable):
 		SoundManager.play_random_sfx([Sounds.TURN_1, Sounds.TURN_2, Sounds.TURN_3])
 		
 	current_cell = target_cell
-	update_wagons()
+	wagons.update(current_cell)
 		
 	if boost_left > 0:
 		old_boost_left = boost_left
@@ -151,58 +164,15 @@ func move(precondition: Callable):
 		end_boost()
 
 
-func add_wagon() -> void:
-	wagon_queue += 1
-	
-	
-func update_wagons() -> void:	
-	# add wagon if queue is bigger than 0
-	var wagon_created = false
-	if wagon_queue > 0:
-		wagon_created = true
-		wagon_queue -= 1
-		create_wagon()
-		
-	var target_cell = current_cell
-	for wagon in wagons.get_children():
-		var current_wagon_cell = wagon.current_cell
-		wagon.move(target_cell, wagon == head or not wagon_created)
-		target_cell = current_wagon_cell
-
-
-func create_wagon() -> void:
-	var wagon = TRAIN_WAGON.instantiate()
-	wagon.snake = self
-	wagons.add_child(wagon)
-	wagons.move_child(wagon, 1)
-	var new_wagon_cell = head.current_cell
-	wagon.global_position = new_wagon_cell * Global.TILE_SIZE
-	wagon.current_cell = new_wagon_cell
-	wagon.rotation = rotation
-	wagon.target_angle = wagon.rotation
-	
-	var scale_tween = create_tween()
-	var t1 = scale_tween.tween_property(wagon, ^"scale", Vector2(1.0, 1.0), movement_timer.wait_time + 0.2)
-	t1.from(Vector2(0, 0)).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	
-	var opacity_tween = create_tween()
-	var t3 = opacity_tween.tween_property(wagon, ^"modulate", Color.WHITE, movement_timer.wait_time + 0.2)
-	t3.from(Color(1, 1, 1, 0)).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)	
-
-
 func can_add_passenger() -> bool:
-	for wagon in wagons.get_children():
-		if wagon is Wagon:
-			if not wagon.has_passenger && wagon.can_have_passenger:
-				return true			
+	for wagon: Wagon in wagons.get_all_wagons():
+		if not wagon.has_passenger and wagon.can_have_passenger:
+			return true
 	return false
 	
 	
 func add_passenger(wagon: Wagon) -> void:
-	if not can_add_passenger():
-		return
-	
-	if not wagon.has_passenger && wagon.can_have_passenger:
+	if not wagon.has_passenger and wagon.can_have_passenger:
 		wagon.has_passenger = true
 		SoundManager.play_random_sfx([Sounds.PICKUP_1, Sounds.PICKUP_2, Sounds.PICKUP_3])
 		return
@@ -221,18 +191,18 @@ func pickup_item(item: Item) -> void:
 		Item.ITEM_TYPE.Grow:
 			powerup = false
 			for i in grow_amount:
-				add_wagon()
+				wagons.add_wagon()
 		Item.ITEM_TYPE.BigGrow:
 			for i in big_grow_amount:
-				add_wagon()
+				wagons.add_wagon()
 		Item.ITEM_TYPE.Shrink:
 			for i in shrink_amoumt:
-				remove_wagon()
+				wagons.remove_wagon()
 		Item.ITEM_TYPE.Portal:
 			has_portal = true
-			add_wagon()
+			wagons.add_wagon()
 		Item.ITEM_TYPE.Boost:
-			add_wagon()
+			wagons.add_wagon()
 			boost_left = boost_size
 			start_boost()
 		Item.ITEM_TYPE.Frog:
@@ -250,41 +220,16 @@ func pickup_item(item: Item) -> void:
 	head_tween2.tween_property(head.get_node("Sprite"), "scale", Vector2(1.2, 1.2), base_movement_time / 2.0)
 	head_tween2.tween_property(head.get_node("Sprite"), "scale", Vector2(1.0, 1.0), base_movement_time / 2.0)
 	
-	
 	await get_tree().create_timer(base_movement_time / 2.0).timeout
 	item.queue_free()
 
 
 func get_passenger_count() -> int:
 	var count = 0
-	for wagon in wagons.get_children():
+	for wagon in wagons.get_all_wagons():
 		if wagon.has_passenger:
 			count += 1
 	return count
-
-
-func get_available_wagons() -> Array[Wagon]:
-	var available_wagons: Array[Wagon] = []
-	for wagon in wagons.get_children():
-		if wagon is Wagon:
-			if not wagon.has_passenger and wagon.can_have_passenger:
-				available_wagons.append(wagon)
-	return available_wagons
-
-
-func remove_wagon() -> void:
-	if wagons.get_child_count() == 2:
-		return
-	
-	var back_wagon = null
-	var idx = wagons.get_child_count() - 3
-	for i in range(0, wagons.get_child_count()):
-		back_wagon = wagons.get_child(wagons.get_child_count() - i - 1)
-		if not back_wagon.has_passenger and back_wagon.can_have_passenger:
-			break
-		
-	if back_wagon.can_have_passenger:
-		back_wagon.queue_free()
 
 
 func _on_sound_timer_timeout() -> void:

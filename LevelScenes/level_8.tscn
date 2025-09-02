@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://Resources/TerrainTiles.tres" id="1_xov68"]
 [ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://Level/grid.gd" id="2_rsxev"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="3_cbvuo"]
-[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="5_s7pwh"]
+[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/pickup_station.tscn" id="5_s7pwh"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="6_1fsbw"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="8_kcncj"]
 

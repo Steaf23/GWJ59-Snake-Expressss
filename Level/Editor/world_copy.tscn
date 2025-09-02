@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1dug51tbmk0w"]
+[gd_scene load_steps=14 format=3 uid="uid://b1dug51tbmk0w"]
 
 [ext_resource type="Texture2D" uid="uid://duu8qceldeudx" path="res://Assets/Art/BushesPacked.png" id="1_e0slt"]
 [ext_resource type="Texture2D" uid="uid://doniste0bwuev" path="res://Assets/Art/tileset.png" id="2_8xkv7"]
 [ext_resource type="Texture2D" uid="uid://cx84v6dyo42jw" path="res://Assets/Art/SwampWater.png" id="3_unv88"]
 [ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://Level/grid.gd" id="4_un7vn"]
-[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="5_occas"]
-[ext_resource type="Resource" uid="uid://cyhjkmruomscy" path="res://Resources/Stations/circle_station.tres" id="6_jxcqc"]
+[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/pickup_station.tscn" id="5_occas"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="7_lqllp"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="8_kygo1"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="9_h8d4f"]
@@ -228,7 +227,6 @@ position = Vector2(224, 160)
 
 [node name="Station2" parent="Grid/Stations" instance=ExtResource("5_occas")]
 position = Vector2(448, 160)
-entry = ExtResource("6_jxcqc")
 
 [node name="DeliveryStation" parent="Grid/Stations" instance=ExtResource("7_lqllp")]
 position = Vector2(96, 256)
@@ -237,24 +235,6 @@ number_gradient = SubResource("Gradient_6i6ra")
 [node name="Train" parent="Grid" instance=ExtResource("8_kygo1")]
 position = Vector2(288, 64)
 boost_multiplier = 0.7
-
-[node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
-limit_left = 32
-limit_top = 32
-limit_right = 672
-limit_bottom = 384
-
-[node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
-position = Vector2(-256, -32)
-
-[node name="Corner2" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="1"]
-position = Vector2(384, 320)
-
-[node name="ReferenceRect" parent="Grid/Train/Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
-offset_left = 32.0
-offset_top = 32.0
-offset_right = -608.0
-offset_bottom = -336.0
 
 [node name="Items" type="Node2D" parent="Grid"]
 
@@ -270,5 +250,4 @@ type = 2
 
 [editable path="Grid/Train"]
 [editable path="Grid/Train/Wagons/Head"]
-[editable path="Grid/Train/Wagons/Head/BoundCamera2D"]
 [editable path="Grid/Train/Wagons/Tail"]

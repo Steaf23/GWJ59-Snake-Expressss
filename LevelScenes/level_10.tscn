@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://qvpbxfxmduuc" path="res://Resources/TerrainTiles.tres" id="1_deta6"]
 [ext_resource type="Script" uid="uid://dxap5q2hasluq" path="res://Level/grid.gd" id="2_r444h"]
 [ext_resource type="PackedScene" uid="uid://k1v62ydkbtqy" path="res://Level/delivery_station.tscn" id="3_exmt6"]
-[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/station.tscn" id="4_vvwnj"]
+[ext_resource type="PackedScene" uid="uid://djlj1bhvc1kp8" path="res://Level/pickup_station.tscn" id="4_vvwnj"]
 [ext_resource type="PackedScene" uid="uid://dwj4xfnnfcc7v" path="res://Level/item.tscn" id="5_000ny"]
 [ext_resource type="Texture2D" uid="uid://c2mkhr1sxwgyv" path="res://Assets/Art/GoldenFrog.png" id="6_rbboj"]
 [ext_resource type="PackedScene" uid="uid://b76ikgus0leci" path="res://Level/Player/player_snake.tscn" id="7_m5ab4"]
@@ -116,26 +116,7 @@ type = 3
 [node name="Train" parent="Grid" instance=ExtResource("7_m5ab4")]
 position = Vector2(288, 96)
 
-[node name="BoundCamera2D" parent="Grid/Train/Wagons/Head" index="3"]
-limit_left = 96
-limit_top = -32
-limit_right = 1312
-limit_bottom = 768
-
-[node name="Corner1" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="0"]
-position = Vector2(-192, -128)
-
-[node name="Corner2" parent="Grid/Train/Wagons/Head/BoundCamera2D" index="1"]
-position = Vector2(1024, 672)
-
-[node name="ReferenceRect" parent="Grid/Train/Wagons/Head/BoundCamera2D/CanvasLayer" index="0"]
-offset_left = 96.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 48.0
-
 [editable path="Grid/Items/Item2"]
 [editable path="Grid/Train"]
 [editable path="Grid/Train/Wagons/Head"]
-[editable path="Grid/Train/Wagons/Head/BoundCamera2D"]
 [editable path="Grid/Train/Wagons/Tail"]

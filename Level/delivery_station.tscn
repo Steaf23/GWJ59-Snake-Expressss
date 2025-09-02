@@ -56,10 +56,9 @@ outline_color = Color(1, 1, 0.486275, 1)
 [node name="DeliveryStation" type="Node2D"]
 z_index = 1
 script = ExtResource("1_oh14a")
-is_delivery = true
 number_gradient = SubResource("Gradient_4587d")
 
-[node name="Icon" type="AnimatedSprite2D" parent="."]
+[node name="Flag" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 0.721569, 0.898039, 1)
 position = Vector2(15, -15)
 sprite_frames = SubResource("SpriteFrames_asina")

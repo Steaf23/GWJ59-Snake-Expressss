@@ -2,25 +2,6 @@
 class_name DeliveryStation
 extends Node2D
 
-enum STATION_TYPE {
-	Square,
-	Triangle,
-	Star,
-	Circle,
-	Dusk,
-	Dawn,
-}
-
-@export var entry: StationEntry: 
-	set(value):
-		entry = value
-		if entry != null:
-			if not is_node_ready():
-				await ready
-			$Icon.modulate = entry.color
-
-
-@export var is_delivery: bool
 @export var starting_count: int = 2:
 	set(value):
 		starting_count = value
@@ -34,12 +15,12 @@ var current_cell: Vector2i
 
 
 func _ready() -> void:
-	self.entry = entry
 	current_cell = (global_position + Vector2(2.0, 2.0)) / Global.TILE_SIZE
+	
 	set_count(starting_count)
 
 
-func get_pickup_cells() -> Array[Vector2i]:
+func get_delivery_cells() -> Array[Vector2i]:
 	if capacity <= 0:
 		return []
 		

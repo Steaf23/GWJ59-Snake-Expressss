@@ -1,4 +1,5 @@
 @tool
+@icon("res://Assets/Art/GrowthFruitBig.png")
 class_name Item
 extends Node2D
 
